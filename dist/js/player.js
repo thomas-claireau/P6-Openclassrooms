@@ -62,7 +62,6 @@ class Player {
         let playerColumn = this.column;
         let playerCell = this.grid[playerRow][playerColumn];
         this.playerNearby = this.checkPlayerNearby();
-        console.log(this.checkPlayerNearby());
         if (playerCell.accessible === true &&
             playerCell.weapon === null &&
             playerCell.player === null) {

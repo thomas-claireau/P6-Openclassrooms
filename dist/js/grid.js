@@ -219,11 +219,10 @@ class Grid {
         const tds = document.querySelectorAll('td');
         const grid = this.gridActu;
         const player = this.nowPlayer;
-        let count = this.count;
         let row = this.row;
         let column = this.column;
         let thisObj = this;
-        console.log(this.player1);
+        let count = this.count;
         tds.forEach((td) => {
             td.addEventListener('click', function (event) {
                 row = td.dataset.row;
@@ -235,8 +234,12 @@ class Grid {
                     cell.player = player; // après avoir déplacé le joueur, reprendre la position initiale des joueurs (qui a donc changé par rapport au 1er tour)
                     player.row = row; // nouvelle ligne du joueur
                     player.column = column; // nouvelle colonne du joueur
-                    if (thisObj.checkStartBattle() === false)
+                    if (thisObj.checkStartBattle() === false) {
                         count++; // incrémenter click si aucune bataille n'a été déclenchée
+                        // console.log(count);
+                        const saveValue = document.querySelector('input.count');
+                        saveValue.textContent = count;
+                    }
                     // reset tous les blocks après le click pour supprimer les mouvements disponibles des joueurs, sinon les mouvements dispo des deux joueurs s'afficheront en meme temps.
                     for (let row = 0; row < grid.length; row++) {
                         for (let column = 0; column < grid[row].length; column++) {
@@ -251,6 +254,9 @@ class Grid {
                 thisObj.whosTurn(); // au tour du joueur suivant
             });
         });
+        // console.log(count);
+        const saveValue = document.querySelector('input.count');
+        this.count = Number(saveValue.textContent) + 1;
         thisObj = this;
         row = this.row;
         column = this.column;
@@ -306,6 +312,15 @@ class Grid {
         this.moveClick();
     }
     whosTurn() {
+        let player;
+        if (this.count % 2 === 0) {
+            player = this.player1;
+            this.nowPlayer = player;
+        }
+        else {
+            player = this.player2;
+            this.nowPlayer = player;
+        }
         if (this.checkStartBattle() === true) {
             // si les deux joueurs sont cote a cote, la bataille commence
             this.createTableHTML(); // affiche le mouvement du dernier joueur avant de commencer la bataille

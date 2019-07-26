@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	newGrid.setGame();
 
 	let count = 0; // variable générale pour activer tel ou tel joueur dans la boucle. Si la variable reste à l'intérieur de la fonction, elle sera réinitialisé à zéro a chaque appel de la fonction. Le second joueur ne sera donc jamais appelé. Au contraire, si la variable est incrémenté en dehors de la fonction, le joueur 2 sera appelé.
+	newGrid.count = count;
 	// whosTurn();
 	// let player;
 	// let count = this.count;
@@ -57,16 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	// newGrid.nowPlayer = player1;
 	// newGrid.sendContentToPage();
 
-	const tds = document.querySelectorAll('td');
-	tds.forEach((td) => {
-		td.addEventListener('click', function(event) {
-			if (count % 2 === 0) {
-				newGrid.nowPlayer = player1;
-			} else {
-				newGrid.nowPlayer = player2;
-			}
-		});
-	});
+	// const tds = document.querySelectorAll('td');
+	// tds.forEach((td) => {
+	// 	td.addEventListener('click', function(event) {
+	// 		count++;
+	// 		if (count % 2 === 0) {
+	// 			newGrid.nowPlayer = player1;
+	// 		} else {
+	// 			newGrid.nowPlayer = player2;
+	// 		}
+	// 	});
+	// });
 
 	newGrid.grid.forEach((el) => {
 		el.forEach((le) => {
