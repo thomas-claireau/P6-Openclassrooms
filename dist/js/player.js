@@ -52,35 +52,37 @@ class Player {
         else {
             this.playerNearby = false;
         }
+        return this.playerNearby;
     }
     placePlayer() {
         // fonction pour créer les joueurs
         let playerRow = this.row;
         let playerColumn = this.column;
         let playerCell = this.grid[playerRow][playerColumn];
+        this.playerNearby = this.checkPlayerNearby();
+        console.log(this.checkPlayerNearby());
         if (playerCell.accessible === true &&
             playerCell.weapon === null &&
             playerCell.player === null) {
             // si la cellule est accessible, qu'il n'y a aucune arme dessus, ni aucun joueur, alors on vérifie si les cellules adjacente contiennent un joueur (playerNearby)
             if (this.playerNearby === true) {
-                // si un autre joueur est sur une case adjacente, on relance la fonction
-                let newPlayer = new Player(this.name, this.health, this.weapon, this.grid);
-                newPlayer.checkPlayerNearby();
-                newPlayer.placePlayer();
+                // si un autre joueur est sur une case adjacente, on relance la fonction en changant row et column
+                this.row = pickANumber();
+                this.column = pickANumber();
+                this.placePlayer();
             }
             else {
                 playerCell.player = this; // on remplit l'option player avec les infos du joueur
-                playerCell.accessible = false;
                 // pour poser des conditions lorsque les joueurs seront en mouvement, enregistrer les informations sur la ligne et la colonne de chaque joueur dans l'objet player
-                this.row = playerRow;
-                this.column = playerColumn;
+                // this.row = playerRow;
+                // this.column = playerColumn;
             }
         }
         else {
             // si la cellule générée est inaccessible ou déja prise, relancez la fonction
-            let newPlayer = new Player(this.name, this.health, this.weapon, this.grid);
-            newPlayer.checkPlayerNearby();
-            newPlayer.placePlayer();
+            this.row = pickANumber();
+            this.column = pickANumber();
+            this.placePlayer();
         }
     }
 }

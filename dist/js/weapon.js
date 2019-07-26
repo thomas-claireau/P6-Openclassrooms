@@ -14,7 +14,6 @@ class Weapon {
             weaponCell.weapon === null &&
             weaponCell.player === null) {
             weaponCell.weapon = this; // si la cellule est accessible, sans joueur et sans arme, changer la cellule avec le nom de l'arme (passé en paramètre)
-            weaponCell.accessible = false;
         }
         else {
             this.getWeapon(); // sinon, redémarrer le processus de recherche
