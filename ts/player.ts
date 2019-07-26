@@ -29,40 +29,42 @@ class Player {
 		let checkRight;
 		let grid = this.grid;
 
-		if (topBottom === 0) {
-			// si le joueur est sur la première ligne, ne pas vérifier la position du haut
-			checkUp = null;
-		} else {
-			checkUp = grid[topBottom - 1][leftRight].player;
-		}
+		if (this.name === 'Joueur 2') {
+			if (topBottom === 0) {
+				// si le joueur est sur la première ligne, ne pas vérifier la position du haut
+				checkUp = null;
+			} else {
+				checkUp = grid[topBottom - 1][leftRight].player;
+			}
 
-		if (topBottom === 9) {
-			// si le joueur est sur la dernière ligne, ne pas vérifier la position du bas
-			checkDown = null;
-		} else {
-			checkDown = grid[topBottom + 1][leftRight].player;
-		}
+			if (topBottom === 9) {
+				// si le joueur est sur la dernière ligne, ne pas vérifier la position du bas
+				checkDown = null;
+			} else {
+				checkDown = grid[topBottom + 1][leftRight].player;
+			}
 
-		if (leftRight === 0) {
-			// si le joueur est sur la première colonne, ne pas vérifier la position de gauche
-			checkLeft = null;
-		} else {
-			checkLeft = grid[topBottom][leftRight - 1].player;
-		}
+			if (leftRight === 0) {
+				// si le joueur est sur la première colonne, ne pas vérifier la position de gauche
+				checkLeft = null;
+			} else {
+				checkLeft = grid[topBottom][leftRight - 1].player;
+			}
 
-		if (leftRight === 9) {
-			// si le joueur est sur la dernière colonne, ne pas vérifier la position de droite
-			checkRight = null;
-		} else {
-			checkRight = grid[topBottom][leftRight + 1].player;
-		}
+			if (leftRight === 9) {
+				// si le joueur est sur la dernière colonne, ne pas vérifier la position de droite
+				checkRight = null;
+			} else {
+				checkRight = grid[topBottom][leftRight + 1].player;
+			}
 
-		if ([checkUp, checkDown, checkLeft, checkRight].indexOf(this) != -1) {
-			this.playerNearby = true;
-		} else {
-			this.playerNearby = false;
+			if (checkUp != null || checkDown != null || checkLeft != null || checkRight != null) {
+				this.playerNearby = true;
+			} else {
+				this.playerNearby = false;
+			}
+			return this.playerNearby;
 		}
-		return this.playerNearby;
 	}
 
 	placePlayer(): any {
