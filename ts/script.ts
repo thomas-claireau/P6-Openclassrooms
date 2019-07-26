@@ -23,4 +23,22 @@ document.addEventListener('DOMContentLoaded', () => {
 	player2.placePlayer();
 
 	console.log(newGrid.grid);
+
+	newGrid.grid.forEach((el) => {
+		el.forEach((le) => {
+			if (le.inactiveCase !== false) {
+				// console.log(le);
+			}
+			if (le.availableMove !== false) {
+				// console.log(le);
+			}
+			if (le.weapon !== null) {
+				// console.log(le);
+			}
+
+			if (le.player !== null) {
+				console.log(le);
+			}
+		});
+	});
 });
