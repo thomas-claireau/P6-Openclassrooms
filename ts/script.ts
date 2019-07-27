@@ -34,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	newGrid.setGame();
 
 	let count = localStorage.setItem('count', '0'); // variable générale pour activer tel ou tel joueur dans la boucle. Si la variable reste à l'intérieur de la fonction, elle sera réinitialisé à zéro a chaque appel de la fonction. Le second joueur ne sera donc jamais appelé. Au contraire, si la variable est incrémenté en dehors de la fonction, le joueur 2 sera appelé.
+	localStorage.setItem('rowOfClick', null);
+	localStorage.setItem('columnOfClick', null);
+
 	// console.log(localStorage.count);
 	newGrid.count = count;
 	newGrid.whosTurn();

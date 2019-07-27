@@ -6,7 +6,7 @@ class Grid {
         this.gridActu;
         this.weapons;
         this.nowPlayer;
-        this.count = localStorage.count;
+        this.count;
         this.row; // row of click
         this.column; // column of click;
     }
@@ -230,6 +230,8 @@ class Grid {
                 const cell = grid[row][column];
                 if (cell.availableMove === true) {
                     grid[player.row][player.column].player = null; // efface l'ancien emplacement du joueur car sinon, au prochain tour, il y aura un double joueur
+                    localStorage.setItem('rowOfClick', row);
+                    localStorage.setItem('columnOfClick', column);
                     thisObj.movePlayerToClick(); // fonction pour déplacer le joueur à l'emplacement cliqué et changer d'arme s'il passe dessus
                     cell.player = player; // après avoir déplacé le joueur, reprendre la position initiale des joueurs (qui a donc changé par rapport au 1er tour)
                     player.row = row; // nouvelle ligne du joueur
@@ -273,8 +275,9 @@ class Grid {
         let directionCol = 0;
         const grid = this.gridActu;
         const playerPosition = this.nowPlayer;
-        const rowOfClick = this.row;
-        const columnOfClick = this.column;
+        const rowOfClick = localStorage.rowOfClick;
+        const columnOfClick = localStorage.columnOfClick;
+        console.log(rowOfClick);
         if (rowOfClick === playerPosition.row) {
             // lorsque le clic est valide et que le joueur est sur la même rangée, vérifiez si le clic est à gauche ou à droite du joueur pour déterminer la direction du déplacement
             if (columnOfClick < playerPosition.column) {
@@ -303,6 +306,12 @@ class Grid {
             const currentWeaponP2 = document.querySelector('#currentWeaponP2');
             playerPosition.row = Number(playerPosition.row) + Number(directionRow);
             playerPosition.column = Number(playerPosition.column) + Number(directionCol);
+            const cell = grid[playerPosition.row][playerPosition.column];
+            if (cell.weapon != null) {
+                var temperaryDrop = playerPosition.weapon;
+                playerPosition.weapon = cell.weapon;
+                cell.weapon = temperaryDrop;
+            }
             // changeWeapon(playerPosition, grid[playerPosition.row][playerPosition.column]);
             // currentWeaponP1.textContent = `Arme : ${player1.weapon.name} - Dégats : ${
             // 	player1.weapon.damage
