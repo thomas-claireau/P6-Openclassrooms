@@ -25,19 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
     newGrid.weapons.push(hammer);
     newGrid.weapons.push(sword);
     newGrid.setGame();
-    let count = 0; // variable générale pour activer tel ou tel joueur dans la boucle. Si la variable reste à l'intérieur de la fonction, elle sera réinitialisé à zéro a chaque appel de la fonction. Le second joueur ne sera donc jamais appelé. Au contraire, si la variable est incrémenté en dehors de la fonction, le joueur 2 sera appelé.
+    let count = localStorage.setItem('count', '0'); // variable générale pour activer tel ou tel joueur dans la boucle. Si la variable reste à l'intérieur de la fonction, elle sera réinitialisé à zéro a chaque appel de la fonction. Le second joueur ne sera donc jamais appelé. Au contraire, si la variable est incrémenté en dehors de la fonction, le joueur 2 sera appelé.
+    // console.log(localStorage.count);
     newGrid.count = count;
-    // whosTurn();
+    newGrid.whosTurn();
     // let player;
     // let count = this.count;
     // let count;
     // par défaut, le joueur 1 commence. Si c'est count est pair, c'est au tour du joueur 1, si c'est impair, c'est au tour du joueur 2
-    if (count % 2 === 0) {
-        newGrid.nowPlayer = player1;
-    }
-    else {
-        newGrid.nowPlayer = player2;
-    }
+    // if (localStorage.count % 2 === 0) {
+    // 	newGrid.nowPlayer = player1;
+    // } else {
+    // 	newGrid.nowPlayer = player2;
+    // }
     if (newGrid.checkStartBattle() === true) {
         // si les deux joueurs sont cote a cote, la bataille commence
         newGrid.createTableHTML(); // affiche le mouvement du dernier joueur avant de commencer la bataille

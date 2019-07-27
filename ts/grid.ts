@@ -23,7 +23,7 @@ class Grid {
 		this.gridActu;
 		this.weapons;
 		this.nowPlayer;
-		this.count;
+		this.count = localStorage.count;
 		this.row; // row of click
 		this.column; // column of click;
 	}
@@ -272,10 +272,14 @@ class Grid {
 					player.column = column; // nouvelle colonne du joueur
 
 					if (thisObj.checkStartBattle() === false) {
-						count++; // incrémenter click si aucune bataille n'a été déclenchée
+						let count: any = Number(localStorage.count) + 1;
+						count = count.toString();
+						localStorage.setItem('count', count);
+						// count++; // incrémenter click si aucune bataille n'a été déclenchée
 						// console.log(count);
-						const saveValue = document.querySelector('input.count');
-						saveValue.textContent = count;
+						// const saveValue = document.querySelector('input.count');
+						// saveValue.textContent = count;
+						// console.log(count);
 					}
 
 					// reset tous les blocks après le click pour supprimer les mouvements disponibles des joueurs, sinon les mouvements dispo des deux joueurs s'afficheront en meme temps.
@@ -288,13 +292,15 @@ class Grid {
 				} else {
 					alert('Cette case est inacessible');
 				}
+				// console.log(localStorage.count);
 				thisObj.whosTurn(); // au tour du joueur suivant
 			});
 		});
 
 		// console.log(count);
-		const saveValue = document.querySelector('input.count');
-		this.count = Number(saveValue.textContent) + 1;
+		// const saveValue = document.querySelector('input.count');
+		// this.count = Number(saveValue.textContent) + 1;
+		this.count = localStorage.count;
 		thisObj = this;
 		row = this.row;
 		column = this.column;
@@ -356,6 +362,7 @@ class Grid {
 
 	whosTurn() {
 		let player;
+		this.count = localStorage.count;
 		if (this.count % 2 === 0) {
 			player = this.player1;
 			this.nowPlayer = player;
