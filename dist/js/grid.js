@@ -306,19 +306,15 @@ class Grid {
             const currentWeaponP2 = document.querySelector('#currentWeaponP2');
             playerPosition.row = Number(playerPosition.row) + Number(directionRow);
             playerPosition.column = Number(playerPosition.column) + Number(directionCol);
+            // changer l'arme du joueur au passage sur une autre (+ remplacer l'ancienne case de la nouvelle arme par l'ancienne arme)
             const cell = grid[playerPosition.row][playerPosition.column];
             if (cell.weapon != null) {
                 var temperaryDrop = playerPosition.weapon;
                 playerPosition.weapon = cell.weapon;
                 cell.weapon = temperaryDrop;
             }
-            // changeWeapon(playerPosition, grid[playerPosition.row][playerPosition.column]);
-            // currentWeaponP1.textContent = `Arme : ${player1.weapon.name} - Dégats : ${
-            // 	player1.weapon.damage
-            // }`;
-            // currentWeaponP2.textContent = `Arme : ${player2.weapon.name} - Dégats : ${
-            // 	player2.weapon.damage
-            // }`;
+            currentWeaponP1.textContent = `Arme : ${this.player1.weapon.name} - Dégats : ${this.player1.weapon.damage}`;
+            currentWeaponP2.textContent = `Arme : ${this.player2.weapon.name} - Dégats : ${this.player2.weapon.damage}`;
         }
     }
     sendContentToPage() {
