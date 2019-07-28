@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Jeu de plateau en JS</title>
+		<link rel="stylesheet" href="dist/css/style.css" />
+	</head>
+	<body>
+		<section class="container">
+			<section class="choice">
+				<div class="play">Jouer tout de suite</div>
+				<div class="option-game">
+					<div class="grid">
+						<label for="nbCase">
+							Choisissez le nombre de la grille de jeu
+							<input
+								type="range"
+								min="100"
+								max="300"
+								value="100"
+								class="range"
+								id="nb-case"
+							/>
+						</label>
+						<label for="sizeGrid">
+							Définissez la taille de la grille
+							<input
+								type="range"
+								min="10"
+								max="100"
+								value="50"
+								class="range"
+								id="size-grid"
+							/>
+						</label>
+						<label for="inaccessibleCase">
+							Choisissez le nombre d'obstacle de la grille
+							<input type="range" min="2" max="" />
+						</label>
+					</div>
+				</div>
+			</section>
+		</section>
+
+		<!-- TODO
+    Nombre de case : entre 100 et 300 (emo : case)
+    Taille en px de la grille (emo : px)
+    Case inaccessible (emo : case rempli / noir)
+    Nombre d'arme (en fonction du choix, afficher un certain nombre d'input pour renseigner les caractéristiques des armes) (emo : arme)
+    Nombre de joueurs (pareil que les armes) (emo joueur)
+    Créer un slider pour les images de chaque perso
+    
+    
+    -->
+
+		<script src="dist/js/script.js"></script>
+		<script src="dist/js/game.js"></script>
+		<script src="dist/js/grid.js"></script>
+		<script src="dist/js/weapon.js"></script>
+		<script src="dist/js/player.js"></script>
+	</body>
+</html>
