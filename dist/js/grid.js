@@ -275,12 +275,13 @@ class Grid {
         let directionCol = 0;
         const grid = this.gridActu;
         const playerPosition = this.nowPlayer;
-        const rowOfClick = localStorage.rowOfClick;
-        const columnOfClick = localStorage.columnOfClick;
-        console.log(rowOfClick);
-        if (rowOfClick === playerPosition.row) {
+        let playerPositionRow = Number(playerPosition.row);
+        let playerPositionColumn = Number(playerPosition.column);
+        const rowOfClick = Number(localStorage.rowOfClick);
+        const columnOfClick = Number(localStorage.columnOfClick);
+        if (rowOfClick === playerPositionRow) {
             // lorsque le clic est valide et que le joueur est sur la même rangée, vérifiez si le clic est à gauche ou à droite du joueur pour déterminer la direction du déplacement
-            if (columnOfClick < playerPosition.column) {
+            if (columnOfClick < playerPositionColumn) {
                 // la position du click est à gauche de la position du joueur
                 directionCol = -1;
             }
@@ -289,9 +290,9 @@ class Grid {
                 directionCol = 1;
             }
         }
-        else if (columnOfClick === playerPosition.column) {
+        else if (columnOfClick === playerPositionColumn) {
             // vérifier si le clic est au-dessus ou au-dessous du lecteur pour déterminer la direction du déplacement
-            if (rowOfClick < playerPosition.row) {
+            if (rowOfClick < playerPositionRow) {
                 // la position du click est au dessus de la position du joueur
                 directionRow = -1;
             }
@@ -301,13 +302,14 @@ class Grid {
             }
         }
         // tant que la position du joueur n'est pas égale a la position du click, continuez a deplacer le joueur
-        while (playerPosition.row === rowOfClick || playerPosition.column === columnOfClick) {
+        while (playerPositionRow != rowOfClick || playerPositionColumn != columnOfClick) {
+            console.log('passe');
             const currentWeaponP1 = document.querySelector('#currentWeaponP1');
             const currentWeaponP2 = document.querySelector('#currentWeaponP2');
-            playerPosition.row = Number(playerPosition.row) + Number(directionRow);
-            playerPosition.column = Number(playerPosition.column) + Number(directionCol);
+            playerPositionRow = playerPositionRow + directionRow;
+            playerPositionColumn = playerPositionColumn + directionCol;
             // changer l'arme du joueur au passage sur une autre (+ remplacer l'ancienne case de la nouvelle arme par l'ancienne arme)
-            const cell = grid[playerPosition.row][playerPosition.column];
+            const cell = grid[playerPositionRow][playerPositionColumn];
             if (cell.weapon != null) {
                 var temperaryDrop = playerPosition.weapon;
                 playerPosition.weapon = cell.weapon;
