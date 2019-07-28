@@ -12,35 +12,43 @@ class Grid {
         this.row; // row of click
         this.column; // column of click;
     }
+    /**
+     * Création de la grille
+     */
     createGrid() {
-        // ---------------- Création de la grille -----------------------
-        // partie 1 : créer un tableau avec une chaine contenant un objet
+        // création d'un tableau contenant un objet décrivant les différentes propriétés de chaque cellule
         const grid = this.grid;
         for (let row = 0; row < this.height / 10; row++) {
-            let newRow = [];
+            const arrayRow = [];
             for (let column = 0; column < this.height / 10; column++) {
-                let cell = {
+                const cell = {
                     accessible: true,
                     player: null,
                     weapon: null,
                     availableMove: false,
                 };
-                newRow.push(cell); // pousse les colonnes dans les lignes vides
+                arrayRow.push(cell); // pousse les colonnes dans les lignes vides
             }
-            grid.push(newRow); // pousse les lignes remplies avec les colonnes vers la grille
+            grid.push(arrayRow); // pousse les lignes remplies avec les colonnes vers la grille
         }
     }
+    /**
+     * Création des cases inaccessibles sur la grille
+     */
     setInaccessibleCase() {
-        let grid = this.grid;
+        const grid = this.grid;
         for (let i = 0; i < this.inaccessible; i++) {
-            // création de bloc innacessible au hasard
-            const rowInaccessible = pickANumber();
-            const columnInaccessible = pickANumber();
+            // création de case innacessible au hasard
+            const rowInaccessible = Game.getRandomInt();
+            const columnInaccessible = Game.getRandomInt();
             const inaccessibleCase = grid[rowInaccessible][columnInaccessible];
             inaccessibleCase.accessible = false; // chaque bloc innacessible a l'option accessible définit a false
             inaccessibleCase.availableMove = true;
         }
     }
+    /**
+     * Informations sur les joueurs et les armes côté front
+     */
     setGame() {
         const startGame = document.querySelector('#startGame');
         const player1 = this.player1;
@@ -68,6 +76,9 @@ class Grid {
         game.style.display = 'block';
         // });
     }
+    /**
+     * Création de la grille à part de l'objet grid, côté front
+     */
     createFrontGrid() {
         const table = document.querySelector('table');
         table.innerHTML = ''; // vider la table a chaque rechargement
@@ -129,8 +140,10 @@ class Grid {
             }
         }
     }
+    /**
+     * Vérifier les mouvements disponibles pour chaque joueur à chaque tour
+     */
     checkAvailableMoves() {
-        // vérifier les mouvements disponibles pour chaque joueur à chaque tour
         let i = 1;
         const limit = 3;
         const grid = this.grid;
@@ -190,6 +203,9 @@ class Grid {
         }
         return grid;
     }
+    /**
+     * Vérifie si les joueurs sont côte à côte
+     */
     checkClosePlayers() {
         let startBattle = false;
         const player = this.nowPlayer;
@@ -217,6 +233,9 @@ class Grid {
         }
         return startBattle;
     }
+    /**
+     * Au click, upgrade les informations sur l'objet Grid, et lance les instructions pour faire bouger les joueurs, tour à tour.
+     */
     updateGridToClick() {
         const tds = document.querySelectorAll('td');
         const grid = this.grid;
@@ -262,6 +281,9 @@ class Grid {
         row = this.row;
         column = this.column;
     }
+    /**
+     * Fait bouger le joueur jusqu'à la position du click
+     */
     movePlayer() {
         // playerPosition est le joueur dans la fonction sendGridToFront. Il faut aussi ajouter la cellule (row + column) pour l'utiliser dans la fonction changeWeapon
         let directionRow = 0;
@@ -311,11 +333,17 @@ class Grid {
             currentWeaponP2.textContent = `Arme : ${this.player2.weapon.name} - Dégats : ${this.player2.weapon.damage}`;
         }
     }
+    /**
+     * Méthode controlleur qui envoie les informations de Grid côté front.
+     */
     sendGridToFront() {
         this.grid = this.checkAvailableMoves(); // appel de cette fonction ici car les lignes et les colonnes sont générés dans la fonction createFrontGrid qui est appelé juste après
         this.createFrontGrid();
         this.updateGridToClick();
     }
+    /**
+     * Décide du tour de chaque joueur
+     */
     whosNext() {
         let player;
         this.count = localStorage.count;
@@ -337,6 +365,9 @@ class Grid {
             this.sendGridToFront();
         }
     }
+    /**
+     * Lance la bataille entre les deux joueurs
+     */
     startBattle() {
         let currentPlayerNumber;
         let nextPlayerNumber;

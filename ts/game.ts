@@ -5,20 +5,37 @@ class Game {
 	public newGrid;
 	public players;
 	public weapons;
+	static heightGrid: any;
+
 	constructor(setup) {
 		this.setup = setup;
 		this.grid = setup.grid;
 		this.newGrid;
 		this.players = new Array();
 		this.weapons = new Array();
+		Game.heightGrid = this.setup.grid.height;
 	}
 
+	/**
+	 * Méthode statique permettant la création d'entier aléatoire
+	 */
+	static getRandomInt() {
+		const limit = Game.heightGrid / 10;
+		return Math.floor(Math.random() * limit);
+	}
+
+	/**
+	 * Création / Reset des localStorage utilisées dans l'application
+	 */
 	setLocalStorage() {
 		localStorage.setItem('count', '0');
 		localStorage.setItem('rowOfClick', null);
 		localStorage.setItem('columnOfClick', null);
 	}
 
+	/**
+	 * Controlleur pour lancer la partie
+	 */
 	loadGame() {
 		this.setGrid();
 		this.setInaccessiblesCases();
@@ -31,6 +48,9 @@ class Game {
 		this.newGrid.whosNext();
 	}
 
+	/**
+	 * Controlleur pour initialiser l'objet Grid et créer la grille de jeu
+	 */
 	setGrid() {
 		this.newGrid = new Grid();
 		this.newGrid.height = this.setup.grid.height;
@@ -38,11 +58,17 @@ class Game {
 		this.newGrid.createGrid();
 	}
 
+	/**
+	 * Controlleur pour créer les cases inaccessibles de la grille de jeu
+	 */
 	setInaccessiblesCases() {
 		this.newGrid.inaccessible = this.setup.grid.inaccessibles;
 		this.newGrid.setInaccessibleCase();
 	}
 
+	/**
+	 * Controlleur pour créer les armes de la grille de jeu
+	 */
 	setWeapons() {
 		for (let key in this.setup.weapons) {
 			const weapon = this.setup.weapons[key];
@@ -57,6 +83,9 @@ class Game {
 		this.newGrid.weapons = this.weapons;
 	}
 
+	/**
+	 * Controlleur pour créer les joueurs de la grille de jeu
+	 */
 	setPlayers() {
 		for (let key in this.setup.players) {
 			const player = this.setup.players[key];
@@ -73,10 +102,16 @@ class Game {
 		this.newGrid.player2 = this.players[1];
 	}
 
+	/**
+	 * Controlleur pour lancer la méthode sur les armes et les joueurs côté front
+	 */
 	setFrontGame() {
 		this.newGrid.setGame();
 	}
 
+	/**
+	 * Controlleur pour lancer la méthode de création de l'objet grid, côté front
+	 */
 	setFrontGrid() {
 		this.newGrid.createFrontGrid();
 	}
