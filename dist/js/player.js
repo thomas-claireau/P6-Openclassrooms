@@ -17,7 +17,7 @@ class Player {
         let checkDown;
         let checkLeft;
         let checkRight;
-        let grid = this.grid;
+        let grid = this.grid.grid;
         if (this.name === 'Joueur 2') {
             if (topBottom === 0) {
                 // si le joueur est sur la première ligne, ne pas vérifier la position du haut
@@ -60,7 +60,7 @@ class Player {
         // fonction pour créer les joueurs
         let playerRow = this.row;
         let playerColumn = this.column;
-        let playerCell = this.grid[playerRow][playerColumn];
+        let playerCell = this.grid.grid[playerRow][playerColumn];
         this.playerNearby = this.checkPlayerNearby();
         if (playerCell.accessible === true &&
             playerCell.weapon === null &&

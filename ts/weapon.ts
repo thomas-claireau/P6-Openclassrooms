@@ -12,7 +12,7 @@ class Weapon {
 		// génère les armes sur la grille
 		let weaponRow = pickANumber();
 		let weaponColumn = pickANumber();
-		let grid = this.grid;
+		let grid = this.grid.grid;
 		let weaponCell = grid[weaponRow][weaponColumn];
 
 		if (

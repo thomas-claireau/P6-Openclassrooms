@@ -1,6 +1,8 @@
 class Grid {
-    constructor(player1 = null, player2 = null, gridActu = null, weapons = null, nowPlayer = null, count = null) {
+    constructor(height = null, inacessible = null, player1 = null, player2 = null, gridActu = null, weapons = null, nowPlayer = null, count = null) {
         this.grid = [];
+        this.height;
+        this.inaccessible;
         this.player1;
         this.player2;
         this.gridActu;
@@ -14,9 +16,9 @@ class Grid {
         // ---------------- Création de la grille -----------------------
         // partie 1 : créer un tableau avec une chaine contenant un objet
         const grid = this.grid;
-        for (let row = 0; row < 10; row++) {
+        for (let row = 0; row < this.height / 10; row++) {
             let newRow = [];
-            for (let column = 0; column < 10; column++) {
+            for (let column = 0; column < this.height / 10; column++) {
                 let cell = {
                     accessible: true,
                     player: null,
@@ -30,7 +32,7 @@ class Grid {
     }
     setInaccessibleCase() {
         let grid = this.grid;
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < this.inaccessible; i++) {
             // création de bloc innacessible au hasard
             const rowInaccessible = pickANumber();
             const columnInaccessible = pickANumber();
@@ -71,7 +73,7 @@ class Grid {
         table.innerHTML = ''; // vider la table a chaque rechargement
         const player1 = this.player1;
         const player2 = this.player2;
-        const grid = this.gridActu;
+        const grid = this.grid;
         for (let row = 0; row < grid.length; row++) {
             const tr = document.createElement('tr');
             table.append(tr); // création des lignes en premier (comme pour grid)
@@ -136,7 +138,7 @@ class Grid {
         const playerInfoRow = Number(playerInfo.row);
         const playerInfoColumn = Number(playerInfo.column);
         while (i <= limit) {
-            if (playerInfoRow + i <= 9 &&
+            if (playerInfoRow + i <= this.height / 10 - 1 &&
                 grid[playerInfoRow + i][playerInfoColumn].accessible === true &&
                 grid[playerInfoRow + i][playerInfoColumn].player === null) {
                 // vérifier à gauche
@@ -162,7 +164,7 @@ class Grid {
         }
         i = 1;
         while (i <= limit) {
-            if (playerInfoColumn + i <= 9 &&
+            if (playerInfoColumn + i <= this.height / 10 - 1 &&
                 grid[playerInfoRow][playerInfoColumn + i].accessible === true &&
                 grid[playerInfoRow][playerInfoColumn + i].player === null) {
                 // vérifier en bas
@@ -193,7 +195,7 @@ class Grid {
         const player = this.nowPlayer;
         const playerRow = Number(player.row);
         const playerColumn = Number(player.column);
-        const grid = this.gridActu;
+        const grid = this.grid;
         if (playerRow - 1 >= 0 && grid[playerRow - 1][playerColumn].player != null) {
             // joueur sur le coté gauche
             startBattle = true;
@@ -217,7 +219,7 @@ class Grid {
     }
     moveClick() {
         const tds = document.querySelectorAll('td');
-        const grid = this.gridActu;
+        const grid = this.grid;
         const player = this.nowPlayer;
         let row = this.row;
         let column = this.column;
@@ -264,7 +266,7 @@ class Grid {
         // playerPosition est le joueur dans la fonction sendContentToPage. Il faut aussi ajouter la cellule (row + column) pour l'utiliser dans la fonction changeWeapon
         let directionRow = 0;
         let directionCol = 0;
-        const grid = this.gridActu;
+        const grid = this.grid;
         const playerPosition = this.nowPlayer;
         let playerPositionRow = Number(playerPosition.row);
         let playerPositionColumn = Number(playerPosition.column);
@@ -356,7 +358,6 @@ class Grid {
         const htmlCurrentPlayer = document.querySelector('.showPlayer' + currentPlayerNumber);
         const htmlAtt = document.querySelector('#player' + currentPlayerNumber + 'Att');
         const htmlDef = document.querySelector('#player' + currentPlayerNumber + 'Def');
-        console.log(htmlDef);
         const progressBar = document.querySelector('#pb-player' + nextPlayerNumber);
         htmlCurrentPlayer.classList.add('highLight'); // mettre en surbrillance les boutons lorsque c'est le tour d'un joueur
         function attaque() {
