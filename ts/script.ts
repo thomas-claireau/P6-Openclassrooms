@@ -37,19 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	localStorage.setItem('rowOfClick', null);
 	localStorage.setItem('columnOfClick', null);
 
-	// console.log(localStorage.count);
 	newGrid.count = count;
 	newGrid.whosTurn();
-	// let player;
-	// let count = this.count;
-	// let count;
-
-	// par défaut, le joueur 1 commence. Si c'est count est pair, c'est au tour du joueur 1, si c'est impair, c'est au tour du joueur 2
-	// if (localStorage.count % 2 === 0) {
-	// 	newGrid.nowPlayer = player1;
-	// } else {
-	// 	newGrid.nowPlayer = player2;
-	// }
 
 	if (newGrid.checkStartBattle() === true) {
 		// si les deux joueurs sont cote a cote, la bataille commence
@@ -59,20 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		// sinon continuez a afficher les mouvements disponibles et mettre a jour le code HTML
 		newGrid.sendContentToPage();
 	}
-	// newGrid.nowPlayer = player1;
-	// newGrid.sendContentToPage();
-
-	// const tds = document.querySelectorAll('td');
-	// tds.forEach((td) => {
-	// 	td.addEventListener('click', function(event) {
-	// 		count++;
-	// 		if (count % 2 === 0) {
-	// 			newGrid.nowPlayer = player1;
-	// 		} else {
-	// 			newGrid.nowPlayer = player2;
-	// 		}
-	// 	});
-	// });
 
 	newGrid.grid.forEach((el) => {
 		el.forEach((le) => {

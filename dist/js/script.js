@@ -28,18 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let count = localStorage.setItem('count', '0'); // variable générale pour activer tel ou tel joueur dans la boucle. Si la variable reste à l'intérieur de la fonction, elle sera réinitialisé à zéro a chaque appel de la fonction. Le second joueur ne sera donc jamais appelé. Au contraire, si la variable est incrémenté en dehors de la fonction, le joueur 2 sera appelé.
     localStorage.setItem('rowOfClick', null);
     localStorage.setItem('columnOfClick', null);
-    // console.log(localStorage.count);
     newGrid.count = count;
     newGrid.whosTurn();
-    // let player;
-    // let count = this.count;
-    // let count;
-    // par défaut, le joueur 1 commence. Si c'est count est pair, c'est au tour du joueur 1, si c'est impair, c'est au tour du joueur 2
-    // if (localStorage.count % 2 === 0) {
-    // 	newGrid.nowPlayer = player1;
-    // } else {
-    // 	newGrid.nowPlayer = player2;
-    // }
     if (newGrid.checkStartBattle() === true) {
         // si les deux joueurs sont cote a cote, la bataille commence
         newGrid.createTableHTML(); // affiche le mouvement du dernier joueur avant de commencer la bataille
@@ -49,19 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // sinon continuez a afficher les mouvements disponibles et mettre a jour le code HTML
         newGrid.sendContentToPage();
     }
-    // newGrid.nowPlayer = player1;
-    // newGrid.sendContentToPage();
-    // const tds = document.querySelectorAll('td');
-    // tds.forEach((td) => {
-    // 	td.addEventListener('click', function(event) {
-    // 		count++;
-    // 		if (count % 2 === 0) {
-    // 			newGrid.nowPlayer = player1;
-    // 		} else {
-    // 			newGrid.nowPlayer = player2;
-    // 		}
-    // 	});
-    // });
     newGrid.grid.forEach((el) => {
         el.forEach((le) => {
             if (le.inactiveCase !== false) {

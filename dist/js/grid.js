@@ -336,8 +336,6 @@ class Grid {
         }
     }
     startBattle() {
-        $('#player1Att, #player1Def, #player2Att, #player2Def').off('click');
-        $('.showPlayer1, .showPlayer2').removeClass('highLight');
         let currentPlayerNumber;
         let nextPlayerNumber;
         let currentPlayer;
@@ -356,11 +354,12 @@ class Grid {
             nextPlayer = this.player1;
         }
         const htmlCurrentPlayer = document.querySelector('.showPlayer' + currentPlayerNumber);
-        const htmlAtt = $('#player' + currentPlayerNumber + 'Att');
-        const htmlDef = $('#player' + currentPlayerNumber + 'Def');
+        const htmlAtt = document.querySelector('#player' + currentPlayerNumber + 'Att');
+        const htmlDef = document.querySelector('#player' + currentPlayerNumber + 'Def');
+        console.log(htmlDef);
         const progressBar = document.querySelector('#pb-player' + nextPlayerNumber);
         htmlCurrentPlayer.classList.add('highLight'); // mettre en surbrillance les boutons lorsque c'est le tour d'un joueur
-        htmlAtt.on('click', function attaque() {
+        function attaque() {
             // evenement click sur le bouton d'attaque
             let count = Number(localStorage.count) + 1;
             count = count.toString();
@@ -392,8 +391,11 @@ class Grid {
                 // restartGame.style.display = 'block';
             }
             this.count = localStorage.count;
-        });
-        htmlDef.on('click', function defense() {
+            htmlCurrentPlayer.classList.remove('highLight');
+            htmlAtt.removeEventListener('click', attaque);
+            htmlDef.removeEventListener('click', defense);
+        }
+        function defense() {
             // ajout evenement click au bouton defense
             // count++;
             let count = Number(localStorage.count) + 1;
@@ -402,6 +404,11 @@ class Grid {
             currentPlayer.defend = true;
             thisObj.whosTurn();
             this.count = localStorage.count;
-        });
+            htmlCurrentPlayer.classList.remove('highLight');
+            htmlAtt.removeEventListener('click', attaque);
+            htmlDef.removeEventListener('click', defense);
+        }
+        htmlAtt.addEventListener('click', attaque);
+        htmlDef.addEventListener('click', defense);
     }
 }
