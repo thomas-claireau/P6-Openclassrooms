@@ -277,11 +277,6 @@ class Grid {
 						let count: any = Number(localStorage.count) + 1;
 						count = count.toString();
 						localStorage.setItem('count', count);
-						// count++; // incrémenter click si aucune bataille n'a été déclenchée
-						// console.log(count);
-						// const saveValue = document.querySelector('input.count');
-						// saveValue.textContent = count;
-						// console.log(count);
 					}
 
 					// reset tous les blocks après le click pour supprimer les mouvements disponibles des joueurs, sinon les mouvements dispo des deux joueurs s'afficheront en meme temps.
@@ -294,14 +289,10 @@ class Grid {
 				} else {
 					alert('Cette case est inacessible');
 				}
-				// console.log(localStorage.count);
 				thisObj.whosTurn(); // au tour du joueur suivant
 			});
 		});
 
-		// console.log(count);
-		// const saveValue = document.querySelector('input.count');
-		// this.count = Number(saveValue.textContent) + 1;
 		this.count = localStorage.count;
 		thisObj = this;
 		row = this.row;
@@ -341,7 +332,6 @@ class Grid {
 
 		// tant que la position du joueur n'est pas égale a la position du click, continuez a deplacer le joueur
 		while (playerPositionRow != rowOfClick || playerPositionColumn != columnOfClick) {
-			console.log('passe');
 			const currentWeaponP1 = document.querySelector('#currentWeaponP1');
 			const currentWeaponP2 = document.querySelector('#currentWeaponP2');
 
@@ -384,10 +374,89 @@ class Grid {
 		if (this.checkStartBattle() === true) {
 			// si les deux joueurs sont cote a cote, la bataille commence
 			this.createTableHTML(); // affiche le mouvement du dernier joueur avant de commencer la bataille
-			// battle();
+			this.startBattle();
 		} else {
 			// sinon continuez a afficher les mouvements disponibles et mettre a jour le code HTML
 			this.sendContentToPage();
 		}
+	}
+
+	startBattle() {
+		$('#player1Att, #player1Def, #player2Att, #player2Def').off('click');
+		$('.showPlayer1, .showPlayer2').removeClass('highLight');
+
+		let currentPlayerNumber;
+		let nextPlayerNumber;
+		let currentPlayer;
+		let nextPlayer;
+		let thisObj = this;
+
+		if (this.nowPlayer === this.player1) {
+			currentPlayerNumber = 1;
+			nextPlayerNumber = 2;
+			currentPlayer = this.player1;
+			nextPlayer = this.player2;
+		} else {
+			currentPlayerNumber = 2;
+			nextPlayerNumber = 1;
+			currentPlayer = this.player2;
+			nextPlayer = this.player1;
+		}
+
+		const htmlCurrentPlayer = document.querySelector('.showPlayer' + currentPlayerNumber);
+		const htmlAtt = $('#player' + currentPlayerNumber + 'Att');
+		const htmlDef = $('#player' + currentPlayerNumber + 'Def');
+		const progressBar: HTMLElement = document.querySelector('#pb-player' + nextPlayerNumber);
+
+		htmlCurrentPlayer.classList.add('highLight'); // mettre en surbrillance les boutons lorsque c'est le tour d'un joueur
+
+		htmlAtt.on('click', function attaque() {
+			// evenement click sur le bouton d'attaque
+			let count: any = Number(localStorage.count) + 1;
+			count = count.toString();
+			localStorage.setItem('count', count);
+			currentPlayer.defend = false; // si le currentPlayer attaque, il ne défend pas
+
+			if (nextPlayer.defend === false || nextPlayer.defend === undefined) {
+				// si l'autre joueur choisit aussi l'attaque
+				nextPlayer.health = nextPlayer.health - currentPlayer.weapon.damage;
+			} else {
+				// si l'autre joueur choisit la défense
+				nextPlayer.health = nextPlayer.health - currentPlayer.weapon.damage / 2;
+			}
+
+			// actualiser la barre de santé des joueurs
+			progressBar.style.width = nextPlayer.health + '%';
+			progressBar.textContent = nextPlayer.health;
+
+			if (nextPlayer.health > 0) {
+				// si le joueur a plus de 0 en santé, la bataille continu (tour par tour)
+				thisObj.whosTurn();
+			} else {
+				// sinon, affiche le message du joueur qui gagne la partie
+				progressBar.style.width = '0%';
+				progressBar.textContent = '0';
+				htmlCurrentPlayer.classList.remove('highLight'); // supprimer la surbrillance après qu'un joueur ait gagné
+				setTimeout(function() {
+					alert(`${currentPlayer.name} a gagné le combat !`);
+				}, 1000);
+
+				// restartGame.style.display = 'block';
+			}
+
+			this.count = localStorage.count;
+		});
+
+		htmlDef.on('click', function defense() {
+			// ajout evenement click au bouton defense
+			// count++;
+			let count: any = Number(localStorage.count) + 1;
+			count = count.toString();
+			localStorage.setItem('count', count);
+
+			currentPlayer.defend = true;
+			thisObj.whosTurn();
+			this.count = localStorage.count;
+		});
 	}
 }
