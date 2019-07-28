@@ -20,7 +20,7 @@ class Game {
         this.setFrontGame();
         const count = localStorage.count;
         this.newGrid.count = count;
-        this.newGrid.whosTurn();
+        this.newGrid.whosNext();
     }
     setGrid() {
         this.newGrid = new Grid();
@@ -37,7 +37,7 @@ class Game {
             const name = weapon.name;
             const damage = weapon.damage;
             const newWeapon = new Weapon(name, damage, this.newGrid);
-            newWeapon.getWeapon();
+            newWeapon.createWeapon();
             this.weapons.push(newWeapon);
         }
         this.newGrid.weapons = this.weapons;
@@ -49,7 +49,7 @@ class Game {
             const health = player.health;
             const weapon = this.weapons[0]; // club est l'arme par défaut
             const newPlayer = new Player(name, health, weapon, this.newGrid);
-            newPlayer.placePlayer();
+            newPlayer.createPlayer();
             this.players.push(newPlayer);
         }
         this.newGrid.player1 = this.players[0];
@@ -59,7 +59,7 @@ class Game {
         this.newGrid.setGame();
     }
     setFrontGrid() {
-        this.newGrid.createTableHTML();
+        this.newGrid.createFrontGrid();
     }
 }
 // TODO :

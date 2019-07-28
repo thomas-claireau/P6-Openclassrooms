@@ -3,7 +3,7 @@ function pickANumber() {
     return Math.floor(Math.random() * 10);
 }
 function potAsyncLoop(i, resume) {
-    // evite de looper dans la methode placePlayer
+    // evite de looper dans la methode createPlayer
     let condition = false;
     const max = 1000000;
     if (i < max) {

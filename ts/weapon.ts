@@ -8,7 +8,7 @@ class Weapon {
 		this.grid = grid;
 	}
 
-	getWeapon() {
+	createWeapon() {
 		// génère les armes sur la grille
 		let weaponRow = pickANumber();
 		let weaponColumn = pickANumber();
@@ -22,7 +22,7 @@ class Weapon {
 		) {
 			weaponCell.weapon = this; // si la cellule est accessible, sans joueur et sans arme, changer la cellule avec le nom de l'arme (passé en paramètre)
 		} else {
-			this.getWeapon(); // sinon, redémarrer le processus de recherche
+			this.createWeapon(); // sinon, redémarrer le processus de recherche
 		}
 	}
 }

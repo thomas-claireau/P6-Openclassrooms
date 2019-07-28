@@ -104,7 +104,7 @@ class Grid {
 		// });
 	}
 
-	createTableHTML() {
+	createFrontGrid() {
 		const table: HTMLElement = document.querySelector('table');
 		table.innerHTML = ''; // vider la table a chaque rechargement
 		const player1 = this.player1;
@@ -230,7 +230,7 @@ class Grid {
 		return grid;
 	}
 
-	checkStartBattle() {
+	checkClosePlayers() {
 		let startBattle = false;
 		const player = this.nowPlayer;
 		const playerRow = Number(player.row);
@@ -255,7 +255,7 @@ class Grid {
 		return startBattle;
 	}
 
-	moveClick() {
+	updateGridToClick() {
 		const tds = document.querySelectorAll('td');
 		const grid = this.grid;
 		const player = this.nowPlayer;
@@ -274,12 +274,12 @@ class Grid {
 					grid[player.row][player.column].player = null; // efface l'ancien emplacement du joueur car sinon, au prochain tour, il y aura un double joueur
 					localStorage.setItem('rowOfClick', row);
 					localStorage.setItem('columnOfClick', column);
-					thisObj.movePlayerToClick(); // fonction pour déplacer le joueur à l'emplacement cliqué et changer d'arme s'il passe dessus
+					thisObj.movePlayer(); // fonction pour déplacer le joueur à l'emplacement cliqué et changer d'arme s'il passe dessus
 					cell.player = player; // après avoir déplacé le joueur, reprendre la position initiale des joueurs (qui a donc changé par rapport au 1er tour)
 					player.row = row; // nouvelle ligne du joueur
 					player.column = column; // nouvelle colonne du joueur
 
-					if (thisObj.checkStartBattle() === false) {
+					if (thisObj.checkClosePlayers() === false) {
 						let count: any = Number(localStorage.count) + 1;
 						count = count.toString();
 						localStorage.setItem('count', count);
@@ -295,7 +295,7 @@ class Grid {
 				} else {
 					alert('Cette case est inacessible');
 				}
-				thisObj.whosTurn(); // au tour du joueur suivant
+				thisObj.whosNext(); // au tour du joueur suivant
 			});
 		});
 
@@ -305,8 +305,8 @@ class Grid {
 		column = this.column;
 	}
 
-	movePlayerToClick() {
-		// playerPosition est le joueur dans la fonction sendContentToPage. Il faut aussi ajouter la cellule (row + column) pour l'utiliser dans la fonction changeWeapon
+	movePlayer() {
+		// playerPosition est le joueur dans la fonction sendGridToFront. Il faut aussi ajouter la cellule (row + column) pour l'utiliser dans la fonction changeWeapon
 		let directionRow = 0;
 		let directionCol = 0;
 		const grid = this.grid;
@@ -361,13 +361,13 @@ class Grid {
 		}
 	}
 
-	sendContentToPage() {
-		this.grid = this.checkAvailableMoves(); // appel de cette fonction ici car les lignes et les colonnes sont générés dans la fonction createTableHTML qui est appelé juste après
-		this.createTableHTML();
-		this.moveClick();
+	sendGridToFront() {
+		this.grid = this.checkAvailableMoves(); // appel de cette fonction ici car les lignes et les colonnes sont générés dans la fonction createFrontGrid qui est appelé juste après
+		this.createFrontGrid();
+		this.updateGridToClick();
 	}
 
-	whosTurn() {
+	whosNext() {
 		let player;
 		this.count = localStorage.count;
 		if (this.count % 2 === 0) {
@@ -377,13 +377,13 @@ class Grid {
 			player = this.player2;
 			this.nowPlayer = player;
 		}
-		if (this.checkStartBattle() === true) {
+		if (this.checkClosePlayers() === true) {
 			// si les deux joueurs sont cote a cote, la bataille commence
-			this.createTableHTML(); // affiche le mouvement du dernier joueur avant de commencer la bataille
+			this.createFrontGrid(); // affiche le mouvement du dernier joueur avant de commencer la bataille
 			this.startBattle();
 		} else {
 			// sinon continuez a afficher les mouvements disponibles et mettre a jour le code HTML
-			this.sendContentToPage();
+			this.sendGridToFront();
 		}
 	}
 
@@ -434,7 +434,7 @@ class Grid {
 
 			if (nextPlayer.health > 0) {
 				// si le joueur a plus de 0 en santé, la bataille continu (tour par tour)
-				thisObj.whosTurn();
+				thisObj.whosNext();
 			} else {
 				// sinon, affiche le message du joueur qui gagne la partie
 				progressBar.style.width = '0%';
@@ -462,7 +462,7 @@ class Grid {
 			localStorage.setItem('count', count);
 
 			currentPlayer.defend = true;
-			thisObj.whosTurn();
+			thisObj.whosNext();
 			this.count = localStorage.count;
 			htmlCurrentPlayer.classList.remove('highLight');
 			htmlAtt.removeEventListener('click', attaque);

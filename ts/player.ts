@@ -19,7 +19,7 @@ class Player {
 		this.playerNearby;
 	}
 
-	checkPlayerNearby() {
+	checkClosePlayers() {
 		// vérifie si les joueurs ne sont pas cote a cote
 		let topBottom = this.row;
 		let leftRight = this.column;
@@ -67,12 +67,12 @@ class Player {
 		}
 	}
 
-	placePlayer(): any {
+	createPlayer(): any {
 		// fonction pour créer les joueurs
 		let playerRow = this.row;
 		let playerColumn = this.column;
 		let playerCell = this.grid.grid[playerRow][playerColumn];
-		this.playerNearby = this.checkPlayerNearby();
+		this.playerNearby = this.checkClosePlayers();
 
 		if (
 			playerCell.accessible === true &&
@@ -84,7 +84,7 @@ class Player {
 				// si un autre joueur est sur une case adjacente, on relance la fonction en changant row et column
 				this.row = pickANumber();
 				this.column = pickANumber();
-				this.placePlayer();
+				this.createPlayer();
 			} else {
 				playerCell.player = this; // on remplit l'option player avec les infos du joueur
 				// pour poser des conditions lorsque les joueurs seront en mouvement, enregistrer les informations sur la ligne et la colonne de chaque joueur dans l'objet player
@@ -95,7 +95,7 @@ class Player {
 			// si la cellule générée est inaccessible ou déja prise, relancez la fonction
 			this.row = pickANumber();
 			this.column = pickANumber();
-			this.placePlayer();
+			this.createPlayer();
 		}
 	}
 }
