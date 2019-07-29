@@ -6,39 +6,74 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>Jeu de plateau en JS</title>
 		<link rel="stylesheet" href="dist/css/style.css" />
+		<script src="https://use.fontawesome.com/cb27e3f5d0.js"></script>
 	</head>
 	<body>
 		<section class="container">
-			<section class="choice">
-				<div class="play">Jouer tout de suite</div>
+			<section class="choice wrapper">
+				<div class="play">
+					<button>
+						Jouer
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+				</div>
+				<div class="custom">
+					<button>
+						Customiser
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+				</div>
+			</section>
+			<section class="container-custom">
 				<div class="option-game">
 					<div class="grid">
-						<label for="nbCase">
-							Choisissez le nombre de la grille de jeu
-							<input
-								type="range"
-								min="100"
-								max="300"
-								value="100"
-								class="range"
-								id="nb-case"
-							/>
-						</label>
-						<label for="sizeGrid">
-							Définissez la taille de la grille
-							<input
-								type="range"
-								min="10"
-								max="100"
-								value="50"
-								class="range"
-								id="size-grid"
-							/>
-						</label>
-						<label for="inaccessibleCase">
-							Choisissez le nombre d'obstacle de la grille
-							<input type="range" min="2" max="" />
-						</label>
+						<div class="select hide slidecontainer">
+							<div class="picto">
+								<i class="fa fa-globe" aria-hidden="true"></i>
+							</div>
+							<label for="nbCase">
+								<div>Choisissez le nombre de case de la grille de jeu :</div>
+								<input
+									type="range"
+									min="100"
+									max="300"
+									step="10"
+									value="100"
+									class="slider"
+									id="nb-case"
+								/>
+								<div class="output"></div>
+							</label>
+							<div class="next" data-id="option-2">
+								<i class="fa fa-arrow-right" aria-hidden="true"></i>
+							</div>
+						</div>
+						<div class="select slidecontainer hide option-2">
+							<label for="sizeGrid">
+								<div>Définissez la taille de la grille :</div>
+								<input
+									type="range"
+									min="10"
+									max="100"
+									value="50"
+									class="slider"
+									id="size-grid"
+								/>
+							</label>
+						</div>
+						<div class="select slidecontainer hide option-3">
+							<label for="inaccessibleCase">
+								<div>Choisissez le nombre d'obstacle de la grille :</div>
+								<input type="range" class="slider" min="2" max="" />
+								<span></span>
+							</label>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -54,11 +89,11 @@
     
     
     -->
-
-		<script src="dist/js/script.js"></script>
+		<script src="dist/js/front.js"></script>
+		<!-- <script src="dist/js/script.js"></script>
 		<script src="dist/js/game.js"></script>
 		<script src="dist/js/grid.js"></script>
 		<script src="dist/js/weapon.js"></script>
-		<script src="dist/js/player.js"></script>
+		<script src="dist/js/player.js"></script> -->
 	</body>
 </html>
