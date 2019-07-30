@@ -44,12 +44,22 @@ $color_1: #fff;
 	justify-content: center;
 	z-index: 999;
 
+	&.custom {
+		top: auto;
+		bottom: -50%;
+
+		div:first-child {
+			margin-right: 0;
+		}
+	}
+
 	div:first-child {
 		margin-right: 30px;
 	}
 
 	div {
-		&.play {
+		&.play,
+		&.play-custom {
 			button {
 				background: linear-gradient(to left top, #4267b2 50%, #37589b 50%);
 			}

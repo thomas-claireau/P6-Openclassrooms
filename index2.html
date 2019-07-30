@@ -30,51 +30,288 @@
 					</button>
 				</div>
 			</section>
-			<section class="container-custom">
+			<!-- <section class="container-custom">
+				<div class="prev">
+					<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				</div>
 				<div class="option-game">
-					<div class="grid">
-						<div class="select hide slidecontainer">
-							<div class="picto">
-								<i class="fa fa-globe" aria-hidden="true"></i>
-							</div>
-							<label for="nbCase">
-								<div>Choisissez le nombre de case de la grille de jeu :</div>
-								<input
-									type="range"
-									min="100"
-									max="300"
-									step="10"
-									value="100"
-									class="slider"
-									id="nb-case"
-								/>
-								<div class="output"></div>
-							</label>
-							<div class="next" data-id="option-2">
-								<i class="fa fa-arrow-right" aria-hidden="true"></i>
-							</div>
+					<div class="option options-player">
+						<div class="picto">
+							<i class="fa fa-user" aria-hidden="true"></i>
 						</div>
-						<div class="select slidecontainer hide option-2">
-							<label for="sizeGrid">
-								<div>Définissez la taille de la grille :</div>
-								<input
-									type="range"
-									min="10"
-									max="100"
-									value="50"
-									class="slider"
-									id="size-grid"
-								/>
-							</label>
+						<p>Choisissez le nom des joueurs</p>
+						<label for="nom-joueur-1">
+							<input type="text" maxlength="20" placeholder="Nom du premier joueur" />
+							<span></span>
+						</label>
+						<label for="nom-joueur-2">
+							<input
+								type="text"
+								maxlength="20"
+								placeholder="Nom du deuxième joueur"
+							/>
+							<span></span>
+						</label>
+					</div>
+					<div class="option select slidecontainer">
+						<div class="picto">
+							<i class="fa fa-globe" aria-hidden="true"></i>
 						</div>
-						<div class="select slidecontainer hide option-3">
-							<label for="inaccessibleCase">
-								<div>Choisissez le nombre d'obstacle de la grille :</div>
-								<input type="range" class="slider" min="2" max="" />
+						<p>Choisissez le nombre de cases de la grille de jeu :</p>
+						<label for="nbCase">
+							<input
+								type="range"
+								min="100"
+								max="200"
+								step="10"
+								value="100"
+								class="slider"
+								id="nb-case"
+							/>
+							<div class="output"></div>
+						</label>
+					</div>
+					<div class="option select slidecontainer option-2">
+						<div class="picto">
+							<i class="fa fa-square" aria-hidden="true"></i>
+						</div>
+						<p>Choisissez le nombre d'obstacles de la grille :</p>
+						<label for="inaccessibleCase">
+							<input
+								type="range"
+								class="slider"
+								min="1"
+								max="30"
+								step="1"
+								value="10"
+							/>
+							<div class="output"></div>
+						</label>
+					</div>
+					<div class="option select slidecontainer option-3">
+						<div class="picto">
+							<i class="fa fa-shield" aria-hidden="true"></i>
+						</div>
+						<p>Choisissez le nombre d'armes :</p>
+						<label for="weapons">
+							<input
+								type="range"
+								class="slider"
+								min="1"
+								max="20"
+								step="1"
+								value="4"
+							/>
+							<div class="output"></div>
+						</label>
+					</div>
+					<div class="wrapper custom">
+						<div class="play-custom">
+							<button>
+								Jouer
 								<span></span>
-							</label>
+								<span></span>
+								<span></span>
+								<span></span>
+							</button>
 						</div>
 					</div>
+				</div>
+			</section> -->
+
+			<section class="container-game">
+				<div class="playerOne">
+					<div class="avatar">
+						<img src="/assets/img/player_1.png" alt="" />
+					</div>
+					<div class="name-player">
+						<p>Joueur 1</p>
+					</div>
+					<div class="weapon">
+						<div class="name">
+							<img src="/assets/img/symbole_weapon.png" alt="" />
+							<p>pistolet</p>
+						</div>
+						<div class="damage">
+							<img src="/assets/img/symbole_degat.png" alt="" />
+							<p>10</p>
+						</div>
+					</div>
+					<div class="actions">
+						<div class="attaque">
+							<img src="/assets/img/attack.png" alt="" />
+						</div>
+						<div class="defence">
+							<img src="/assets/img/defense.png" alt="" />
+						</div>
+					</div>
+				</div>
+				<div class="playerTwo">
+					<div class="avatar">
+						<img src="/assets/img/player_2.png" alt="" />
+					</div>
+					<div class="name-player">
+						<p>Joueur 2</p>
+					</div>
+					<div class="weapon">
+						<div class="name">
+							<img src="/assets/img/symbole_weapon.png" alt="" />
+							<p>pistolet</p>
+						</div>
+						<div class="damage">
+							<img src="/assets/img/symbole_degat.png" alt="" />
+							<p>10</p>
+						</div>
+					</div>
+				</div>
+				<div class="game">
+					<table>
+						<tr>
+							<td data-row="0" data-column="0" class="emptyCase"></td>
+							<td data-row="0" data-column="1" class="emptyCase"></td>
+							<td data-row="0" data-column="2" class="emptyCase"></td>
+							<td data-row="0" data-column="3" class="emptyCase"></td>
+							<td data-row="0" data-column="4" class="emptyCase"></td>
+							<td data-row="0" data-column="5" class="emptyCase"></td>
+							<td data-row="0" data-column="6" class="emptyCase"></td>
+							<td data-row="0" data-column="7" class="emptyCase"></td>
+							<td data-row="0" data-column="8" class="inaccessibleCase"></td>
+							<td data-row="0" data-column="9" class="emptyCase"></td>
+						</tr>
+						<tr>
+							<td data-row="1" data-column="0" class="emptyCase"></td>
+							<td data-row="1" data-column="1" class="emptyCase"></td>
+							<td data-row="1" data-column="2" class="emptyCase"></td>
+							<td data-row="1" data-column="3" class="emptyCase"></td>
+							<td
+								data-row="1"
+								data-column="4"
+								class="sword emptyCase"
+								title="sword, dégats : 30"
+							></td>
+							<td
+								data-row="1"
+								data-column="5"
+								class="ak47 emptyCase"
+								title="ak47, dégats : 24"
+							></td>
+							<td data-row="1" data-column="6" class="emptyCase"></td>
+							<td data-row="1" data-column="7" class="emptyCase"></td>
+							<td data-row="1" data-column="8" class="emptyCase"></td>
+							<td data-row="1" data-column="9" class="emptyCase"></td>
+						</tr>
+						<tr>
+							<td data-row="2" data-column="0" class="emptyCase"></td>
+							<td data-row="2" data-column="1" class="emptyCase"></td>
+							<td data-row="2" data-column="2" class="player player2 emptyCase"></td>
+							<td data-row="2" data-column="3" class="emptyCase"></td>
+							<td data-row="2" data-column="4" class="emptyCase"></td>
+							<td data-row="2" data-column="5" class="emptyCase"></td>
+							<td data-row="2" data-column="6" class="inaccessibleCase"></td>
+							<td data-row="2" data-column="7" class="emptyCase"></td>
+							<td data-row="2" data-column="8" class="emptyCase"></td>
+							<td data-row="2" data-column="9" class="emptyCase"></td>
+						</tr>
+						<tr>
+							<td data-row="3" data-column="0" class="emptyCase"></td>
+							<td data-row="3" data-column="1" class="emptyCase"></td>
+							<td data-row="3" data-column="2" class="emptyCase"></td>
+							<td data-row="3" data-column="3" class="emptyCase"></td>
+							<td data-row="3" data-column="4" class="emptyCase"></td>
+							<td
+								data-row="3"
+								data-column="5"
+								class="mitraillette emptyCase"
+								title="mitraillette, dégats : 20"
+							></td>
+							<td data-row="3" data-column="6" class="emptyCase"></td>
+							<td data-row="3" data-column="7" class="emptyCase"></td>
+							<td data-row="3" data-column="8" class="inaccessibleCase"></td>
+							<td data-row="3" data-column="9" class="availableMoveCase"></td>
+						</tr>
+						<tr>
+							<td data-row="4" data-column="0" class="emptyCase"></td>
+							<td data-row="4" data-column="1" class="emptyCase"></td>
+							<td data-row="4" data-column="2" class="emptyCase"></td>
+							<td data-row="4" data-column="3" class="emptyCase"></td>
+							<td data-row="4" data-column="4" class="emptyCase"></td>
+							<td data-row="4" data-column="5" class="emptyCase"></td>
+							<td data-row="4" data-column="6" class="emptyCase"></td>
+							<td data-row="4" data-column="7" class="emptyCase"></td>
+							<td data-row="4" data-column="8" class="inaccessibleCase"></td>
+							<td data-row="4" data-column="9" class="availableMoveCase"></td>
+						</tr>
+						<tr>
+							<td data-row="5" data-column="0" class="emptyCase"></td>
+							<td data-row="5" data-column="1" class="emptyCase"></td>
+							<td data-row="5" data-column="2" class="emptyCase"></td>
+							<td data-row="5" data-column="3" class="inaccessibleCase"></td>
+							<td data-row="5" data-column="4" class="emptyCase"></td>
+							<td data-row="5" data-column="5" class="emptyCase"></td>
+							<td data-row="5" data-column="6" class="emptyCase"></td>
+							<td data-row="5" data-column="7" class="inaccessibleCase"></td>
+							<td data-row="5" data-column="8" class="inaccessibleCase"></td>
+							<td data-row="5" data-column="9" class="availableMoveCase"></td>
+						</tr>
+						<tr>
+							<td data-row="6" data-column="0" class="emptyCase"></td>
+							<td data-row="6" data-column="1" class="emptyCase"></td>
+							<td data-row="6" data-column="2" class="emptyCase"></td>
+							<td data-row="6" data-column="3" class="emptyCase"></td>
+							<td data-row="6" data-column="4" class="emptyCase"></td>
+							<td data-row="6" data-column="5" class="emptyCase"></td>
+							<td data-row="6" data-column="6" class="availableMoveCase"></td>
+							<td
+								data-row="6"
+								data-column="7"
+								class="canon availableMoveCase"
+								title="canon, dégats : 28"
+							></td>
+							<td data-row="6" data-column="8" class="availableMoveCase"></td>
+							<td data-row="6" data-column="9" class="player player1 emptyCase"></td>
+						</tr>
+						<tr>
+							<td data-row="7" data-column="0" class="emptyCase"></td>
+							<td data-row="7" data-column="1" class="emptyCase"></td>
+							<td data-row="7" data-column="2" class="emptyCase"></td>
+							<td data-row="7" data-column="3" class="emptyCase"></td>
+							<td data-row="7" data-column="4" class="emptyCase"></td>
+							<td data-row="7" data-column="5" class="inaccessibleCase"></td>
+							<td data-row="7" data-column="6" class="emptyCase"></td>
+							<td data-row="7" data-column="7" class="emptyCase"></td>
+							<td data-row="7" data-column="8" class="emptyCase"></td>
+							<td data-row="7" data-column="9" class="availableMoveCase"></td>
+						</tr>
+						<tr>
+							<td data-row="8" data-column="0" class="emptyCase"></td>
+							<td data-row="8" data-column="1" class="emptyCase"></td>
+							<td data-row="8" data-column="2" class="emptyCase"></td>
+							<td data-row="8" data-column="3" class="emptyCase"></td>
+							<td data-row="8" data-column="4" class="emptyCase"></td>
+							<td data-row="8" data-column="5" class="emptyCase"></td>
+							<td data-row="8" data-column="6" class="emptyCase"></td>
+							<td data-row="8" data-column="7" class="emptyCase"></td>
+							<td data-row="8" data-column="8" class="emptyCase"></td>
+							<td data-row="8" data-column="9" class="availableMoveCase"></td>
+						</tr>
+						<tr>
+							<td data-row="9" data-column="0" class="emptyCase"></td>
+							<td
+								data-row="9"
+								data-column="1"
+								class="pistolet emptyCase"
+								title="pistolet, dégats : 10"
+							></td>
+							<td data-row="9" data-column="2" class="inaccessibleCase"></td>
+							<td data-row="9" data-column="3" class="emptyCase"></td>
+							<td data-row="9" data-column="4" class="emptyCase"></td>
+							<td data-row="9" data-column="5" class="inaccessibleCase"></td>
+							<td data-row="9" data-column="6" class="emptyCase"></td>
+							<td data-row="9" data-column="7" class="emptyCase"></td>
+							<td data-row="9" data-column="8" class="emptyCase"></td>
+							<td data-row="9" data-column="9" class="availableMoveCase"></td>
+						</tr>
+					</table>
 				</div>
 			</section>
 		</section>

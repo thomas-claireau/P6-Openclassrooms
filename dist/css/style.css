@@ -41,10 +41,17 @@
   justify-content: center;
   z-index: 999;
 }
+.wrapper.custom {
+  top: auto;
+  bottom: -50%;
+}
+.wrapper.custom div:first-child {
+  margin-right: 0;
+}
 .wrapper div:first-child {
   margin-right: 30px;
 }
-.wrapper div.play button {
+.wrapper div.play button, .wrapper div.play-custom button {
   background: linear-gradient(to left top, #4267b2 50%, #37589b 50%);
 }
 .wrapper div.custom button {
@@ -126,7 +133,7 @@ button:hover span {
 
 .slider {
   -webkit-appearance: none;
-  width: 300px;
+  width: 100%;
   height: 15px;
   border-radius: 5px;
   background: #d3d3d3;
@@ -160,8 +167,11 @@ body {
 }
 
 .hide {
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
+  display: none;
+}
+
+.inTurn {
+  border: 5px solid rgba(204, 22, 22, 0.575);
 }
 
 .container {
@@ -173,130 +183,190 @@ body {
 
 .container-custom {
   position: absolute;
-  top: 50%;
+  top: 42%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.container-custom .option-game .select label div {
-  font-size: 40px;
-  font-weight: 500;
-  margin-bottom: 50px;
+.container-custom .prev {
+  position: absolute;
+  top: 50%;
+  left: -115px;
+  transform: translateY(-50%);
 }
-.container-custom .option-game .select .picto {
-  margin-bottom: 30px;
-}
-.container-custom .option-game .select .picto i {
-  font-size: 80px;
-}
-.container-custom .option-game .select .output {
-  font-size: 20px;
-  margin-top: 20px;
-}
-.container-custom .option-game .next {
+.container-custom .prev i {
+  font-size: 60px;
   cursor: pointer;
-  margin-top: 100px;
 }
-.container-custom .option-game .next i {
-  font-size: 40px;
+.container-custom .option-game {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 20px;
 }
-
-h1 {
-  background-color: #2a2e36;
-  color: #c6d4df !important;
-  padding: 20px;
-  text-align: center;
-  border-bottom: 4px #c6d4df solid;
-  margin-bottom: 10px;
-  font-family: "Motiva Sans", Sans-serif !important;
+.container-custom .option-game .option {
+  width: 200px;
+  height: 300px;
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 30px;
+  box-shadow: 0 0 50px 0 rgba(27, 58, 106, 0.1);
 }
-
-.container {
-  border-style: none !important;
+.container-custom .option-game .option input[type=text] {
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  margin-bottom: 40px;
 }
-
-#player1Name {
-  margin-top: 120px;
+.container-custom .option-game .option label {
+  position: relative;
+  top: 40px;
 }
-
-#player2Name {
-  margin-top: 60px;
+.container-custom .option-game .option label span {
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  position: absolute;
+  top: 27px;
+  left: 0;
 }
-
-#startGame {
-  margin-left: 170px;
+.container-custom .option-game .option p {
+  font-size: 20px;
+  font-weight: bold;
 }
-
-table {
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-#game {
-  display: none;
+.container-custom .option-game .option .picto i {
+  font-size: 50px;
 }
 
-table td {
+.container-game {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.container-game .playerOne {
+  order: 1;
+}
+.container-game .playerTwo {
+  order: 3;
+}
+.container-game .game {
+  order: 2;
+}
+.container-game .playerOne,
+.container-game .playerTwo {
+  width: 150px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 0 0 50px 0 rgba(27, 58, 106, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+.container-game .playerOne .weapon img,
+.container-game .playerTwo .weapon img {
+  width: 50px;
+}
+.container-game .playerOne .avatar img,
+.container-game .playerTwo .avatar img {
+  width: 80px;
+}
+.container-game .playerOne .name-player p,
+.container-game .playerTwo .name-player p {
+  font-size: 25px;
+  font-weight: bold;
+}
+.container-game .playerOne .weapon .name,
+.container-game .playerOne .weapon .damage,
+.container-game .playerTwo .weapon .name,
+.container-game .playerTwo .weapon .damage {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.container-game .playerOne .weapon .name img,
+.container-game .playerOne .weapon .damage img,
+.container-game .playerTwo .weapon .name img,
+.container-game .playerTwo .weapon .damage img {
+  margin-right: 20px;
+}
+.container-game .actions {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.container-game .actions .attaque {
+  margin-right: 50px;
+}
+.container-game .actions .attaque,
+.container-game .actions .defence {
+  background-color: red;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.container-game .actions img {
+  width: 50px;
+}
+.container-game .game {
+  margin: 0 30px;
+  box-shadow: 0 0 50px 0 rgba(27, 58, 106, 0.1);
+}
+.container-game .game table td {
   width: 50px;
   height: 50px;
-  border: 1px solid slategray;
+  border: 1px solid #928e8e;
 }
-
-.inaccessibleCell {
+.container-game .game table td.inaccessibleCase {
   background-color: #303031;
 }
-
-.emptyCell {
-  background-color: #e0e0e4;
+.container-game .game table td.emptyCase {
+  background-color: #e0e0e0;
 }
-
-.player1 {
-  background-image: url("https://gdurl.com/hDqq");
-  background-size: 100% 100%;
-}
-
-.player2 {
-  background-image: url("https://gdurl.com/qxoIG");
-  background-size: 100% 100%;
-}
-
-.club {
-  background-image: url("https://gdurl.com/EChC");
-  background-size: 100% 100%;
-}
-
-.dagger {
-  background-image: url("https://gdurl.com/TaZN");
-  background-size: 100% 100%;
-}
-
-.axe {
-  background-image: url("https://gdurl.com/CnKLw");
-  background-size: 100% 100%;
-}
-
-.hammer {
-  background-image: url("https://gdurl.com/6ZsH");
-  background-size: 100% 100%;
-}
-
-.sword {
-  background-image: url("https://gdurl.com/Ktfl");
-  background-size: 100% 100%;
-}
-
-#game {
-  border: 1px solid slategray;
-}
-
-.availableMove {
-  background-color: darkred;
-  opacity: 0.5;
-}
-
-.availableMove:hover {
-  opacity: 0.8;
+.container-game .game table td.availableMoveCase {
+  background-color: rgba(0, 128, 0, 0.288);
   cursor: pointer;
+}
+.container-game .game table td.availableMoveCase:hover {
+  background-color: rgba(0, 128, 0, 0.527);
+}
+.container-game .game table td.player {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.container-game .game table td.player.player1 {
+  background-image: url("/assets/img/player_1.png");
+}
+.container-game .game table td.player.player2 {
+  background-image: url("/assets/img/player_2.png");
+}
+
+.pistolet {
+  background-image: url("/assets/img/pistolet.png");
+  background-size: 100% 100%;
+}
+
+.mitraillette {
+  background-image: url("/assets/img/mitraillette.png");
+  background-size: 100% 100%;
+}
+
+.ak47 {
+  background-image: url("/assets/img/ak47.png");
+  background-size: 100% 100%;
+}
+
+.canon {
+  background-image: url("/assets/img/canon.png");
+  background-size: 100% 100%;
 }
 
 .highLight {
@@ -310,10 +380,6 @@ table td {
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 30px;
-}
-
-img {
-  margin-left: 70px;
 }
 
 #showNamePlayer1 {
