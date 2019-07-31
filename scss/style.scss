@@ -93,6 +93,15 @@ body {
 	justify-content: center;
 	align-content: center;
 	align-items: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	table {
+		border-collapse: collapse;
+		padding-top: 40px;
+	}
 
 	.playerOne {
 		order: 1;
@@ -102,6 +111,22 @@ body {
 	}
 	.game {
 		order: 2;
+	}
+
+	.playerOne {
+		.avatar {
+			img {
+				width: 80px;
+			}
+		}
+	}
+
+	.playerTwo {
+		.avatar {
+			img {
+				width: 60px;
+			}
+		}
 	}
 
 	.playerOne,
@@ -121,11 +146,6 @@ body {
 		.weapon {
 			img {
 				width: 50px;
-			}
-		}
-		.avatar {
-			img {
-				width: 80px;
 			}
 		}
 
@@ -156,14 +176,27 @@ body {
 		justify-content: center;
 		align-content: center;
 		align-items: center;
+		margin-top: 15px;
 
 		.attaque {
-			margin-right: 50px;
+			margin-right: 30px;
+			background-color: #4267b2;
+
+			&:hover {
+				background-color: #37589b;
+			}
+		}
+
+		.defence {
+			background-color: #a6192c;
+
+			&:hover {
+				background-color: #8f1424;
+			}
 		}
 
 		.attaque,
 		.defence {
-			background-color: red;
 			width: 60px;
 			height: 60px;
 			border-radius: 50px;
@@ -171,6 +204,7 @@ body {
 			justify-content: center;
 			align-content: center;
 			align-items: center;
+			cursor: pointer;
 		}
 		img {
 			width: 50px;
