@@ -5,15 +5,18 @@ class Game {
 	public newGrid;
 	public players;
 	public weapons;
+	public custom;
 	static heightGrid: any;
 
-	constructor(setup) {
+	constructor(setup, custom = false) {
 		this.setup = setup;
 		this.grid = setup.grid;
 		this.newGrid;
 		this.players = new Array();
 		this.weapons = new Array();
 		Game.heightGrid = this.setup.grid.height;
+		this.custom = custom;
+		console.log(this.custom);
 	}
 
 	/**
@@ -42,6 +45,7 @@ class Game {
 		this.setWeapons();
 		this.setPlayers();
 		this.setFrontGame();
+		this.setFrontGrid();
 
 		const count = localStorage.count;
 		this.newGrid.count = count;
@@ -54,7 +58,6 @@ class Game {
 	setGrid() {
 		this.newGrid = new Grid();
 		this.newGrid.height = this.setup.grid.height;
-
 		this.newGrid.createGrid();
 	}
 
@@ -106,6 +109,7 @@ class Game {
 	 * Controlleur pour lancer la méthode sur les armes et les joueurs côté front
 	 */
 	setFrontGame() {
+		this.newGrid.custom = this.custom;
 		this.newGrid.setGame();
 	}
 

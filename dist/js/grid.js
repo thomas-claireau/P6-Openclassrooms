@@ -11,6 +11,7 @@ class Grid {
         this.count;
         this.row; // row of click
         this.column; // column of click;
+        this.custom;
     }
     /**
      * Création de la grille
@@ -25,7 +26,7 @@ class Grid {
                     accessible: true,
                     player: null,
                     weapon: null,
-                    availableMove: false,
+                    availableMoveCase: false,
                 };
                 arrayRow.push(cell); // pousse les colonnes dans les lignes vides
             }
@@ -43,38 +44,39 @@ class Grid {
             const columnInaccessible = Game.getRandomInt();
             const inaccessibleCase = grid[rowInaccessible][columnInaccessible];
             inaccessibleCase.accessible = false; // chaque bloc innacessible a l'option accessible définit a false
-            inaccessibleCase.availableMove = true;
+            inaccessibleCase.availableMoveCase = true;
         }
     }
     /**
      * Informations sur les joueurs et les armes côté front
      */
     setGame() {
-        const startGame = document.querySelector('#startGame');
+        let startGame;
+        if (this.custom) {
+            startGame = document.querySelector('.play-custom');
+        }
+        else {
+            startGame = document.querySelector('.play');
+        }
         const player1 = this.player1;
         const player2 = this.player2;
-        // startGame.addEventListener('click', function() {
-        const inputPlayer1 = document.querySelector('#player1Name').textContent;
-        const inputPlayer2 = document.querySelector('#player2Name').textContent;
-        const showNamePlayer1 = document.querySelector('#showNamePlayer1');
-        const showNamePlayer2 = document.querySelector('#showNamePlayer2');
-        const currentWeaponP1 = document.querySelector('#currentWeaponP1');
-        const currentWeaponP2 = document.querySelector('#currentWeaponP2');
-        const beforeGameStarts = document.querySelector('#beforeGameStarts');
-        const game = document.querySelector('#game');
-        player1.name = inputPlayer1;
-        player2.name = inputPlayer2;
-        if (player1.name === '')
-            player1.name = 'Joueur 1';
-        if (player2.name === '')
-            player2.name = 'Joueur 2';
-        showNamePlayer1.textContent = player1.name;
-        showNamePlayer2.textContent = player2.name;
-        currentWeaponP1.textContent = `Arme : ${player1.weapon.name} - Dégâts : ${player1.weapon.damage}`;
-        currentWeaponP2.textContent = `Arme : ${player2.weapon.name} - Dégâts : ${player2.weapon.damage}`;
-        beforeGameStarts.style.display = 'none';
-        game.style.display = 'block';
-        // });
+        // sélecteurs game
+        const playerOne = document.querySelector('.playerOne');
+        const namePlayerOne = playerOne.querySelector('.name-player p');
+        const weaponPlayerOne = playerOne.querySelector('.weapon .name p');
+        const weaponImgPlayerOne = playerOne.querySelector('.weapon .name img');
+        const weaponDamagePlayerOne = playerOne.querySelector('.weapon .damage p');
+        const playerTwo = document.querySelector('.playerTwo');
+        const namePlayerTwo = playerTwo.querySelector('.name-player p');
+        const weaponPlayerTwo = playerTwo.querySelector('.weapon .name p');
+        const weaponImgPlayerTwo = playerTwo.querySelector('.weapon .name img');
+        const weaponDamagePlayerTwo = playerTwo.querySelector('.weapon .damage p');
+        namePlayerOne.textContent = player1.name;
+        namePlayerTwo.textContent = player2.name;
+        weaponPlayerOne.textContent = player1.weapon.name;
+        weaponPlayerTwo.textContent = player2.weapon.name;
+        weaponDamagePlayerOne.textContent = player1.weapon.damage;
+        weaponDamagePlayerTwo.textContent = player2.weapon.damage;
     }
     /**
      * Création de la grille à part de l'objet grid, côté front
@@ -127,15 +129,15 @@ class Grid {
                         td.classList.add('club');
                         td.title = `club, dégats : ${club.damage}`;
                     }
-                    if (cell.availableMove === true) {
-                        td.classList.add('availableMove');
+                    if (cell.availableMoveCase === true) {
+                        td.classList.add('availableMoveCase');
                     }
                     else {
-                        td.classList.add('emptyCell');
+                        td.classList.add('emptyCase');
                     }
                 }
                 else {
-                    td.classList.add('inaccessibleCell');
+                    td.classList.add('inaccessibleCase');
                 }
             }
         }
@@ -143,7 +145,7 @@ class Grid {
     /**
      * Vérifier les mouvements disponibles pour chaque joueur à chaque tour
      */
-    checkAvailableMoves() {
+    checkavailableMoveCases() {
         let i = 1;
         const limit = 3;
         const grid = this.grid;
@@ -155,7 +157,7 @@ class Grid {
                 grid[playerInfoRow + i][playerInfoColumn].accessible === true &&
                 grid[playerInfoRow + i][playerInfoColumn].player === null) {
                 // vérifier à gauche
-                grid[playerInfoRow + i][playerInfoColumn].availableMove = true;
+                grid[playerInfoRow + i][playerInfoColumn].availableMoveCase = true;
                 i++;
             }
             else {
@@ -168,7 +170,7 @@ class Grid {
                 grid[playerInfoRow - i][playerInfoColumn].accessible === true &&
                 grid[playerInfoRow - i][playerInfoColumn].player === null) {
                 // vérifier à droite
-                grid[playerInfoRow - i][playerInfoColumn].availableMove = true;
+                grid[playerInfoRow - i][playerInfoColumn].availableMoveCase = true;
                 i++;
             }
             else {
@@ -181,7 +183,7 @@ class Grid {
                 grid[playerInfoRow][playerInfoColumn + i].accessible === true &&
                 grid[playerInfoRow][playerInfoColumn + i].player === null) {
                 // vérifier en bas
-                grid[playerInfoRow][playerInfoColumn + i].availableMove = true;
+                grid[playerInfoRow][playerInfoColumn + i].availableMoveCase = true;
                 i++;
             }
             else {
@@ -194,7 +196,7 @@ class Grid {
                 grid[playerInfoRow][playerInfoColumn - i].accessible === true &&
                 grid[playerInfoRow][playerInfoColumn - i].player === null) {
                 // vérifier en haut
-                grid[playerInfoRow][playerInfoColumn - i].availableMove = true;
+                grid[playerInfoRow][playerInfoColumn - i].availableMoveCase = true;
                 i++;
             }
             else {
@@ -249,7 +251,7 @@ class Grid {
                 row = td.dataset.row;
                 column = td.dataset.column;
                 const cell = grid[row][column];
-                if (cell.availableMove === true) {
+                if (cell.availableMoveCase === true) {
                     grid[player.row][player.column].player = null; // efface l'ancien emplacement du joueur car sinon, au prochain tour, il y aura un double joueur
                     localStorage.setItem('rowOfClick', row);
                     localStorage.setItem('columnOfClick', column);
@@ -266,7 +268,7 @@ class Grid {
                     for (let row = 0; row < grid.length; row++) {
                         for (let column = 0; column < grid[row].length; column++) {
                             let cell = grid[row][column];
-                            cell.availableMove = false;
+                            cell.availableMoveCase = false;
                         }
                     }
                 }
@@ -337,7 +339,7 @@ class Grid {
      * Méthode controlleur qui envoie les informations de Grid côté front.
      */
     sendGridToFront() {
-        this.grid = this.checkAvailableMoves(); // appel de cette fonction ici car les lignes et les colonnes sont générés dans la fonction createFrontGrid qui est appelé juste après
+        this.grid = this.checkavailableMoveCases(); // appel de cette fonction ici car les lignes et les colonnes sont générés dans la fonction createFrontGrid qui est appelé juste après
         this.createFrontGrid();
         this.updateGridToClick();
     }
