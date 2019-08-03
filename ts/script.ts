@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				inaccessibles: nbObstacle.value, // nombre de cases inaccessibles
 			};
 
-			weapons = {
+			let availableWeapons = {
 				arme1: {
 					name: 'Pistolet',
 					damage: 10,
@@ -126,20 +126,40 @@ document.addEventListener('DOMContentLoaded', () => {
 					grid: null,
 				},
 				arme3: {
-					name: 'Ak47',
-					damage: 30,
+					name: 'Pistolet mittrailleur',
+					damage: 24,
 					grid: null,
 				},
 				arme4: {
-					name: 'Canon',
+					name: 'Revolver',
+					damage: 30,
+					grid: null,
+				},
+				arme5: {
+					name: 'Ak47',
+					damage: 34,
+					grid: null,
+				},
+				arme6: {
+					name: 'Uzi',
+					damage: 25,
+					grid: null,
+				},
+				arme7: {
+					name: 'Mitrailleuse',
 					damage: 40,
+					grid: null,
+				},
+				arme8: {
+					name: 'Canon',
+					damage: 45,
 					grid: null,
 				},
 			};
 
 			// si l'utilisateur choisit plus de 4 armes, les prochaines sont générées aléatoirement
 			if (Number(nbWeapons.value) > 4) {
-				for (let i = 0; i < Number(nbWeapons.value); i++) {}
+				for (let i = 0; i < Number(nbWeapons.value) + 4; i++) {}
 			}
 
 			setupGame = { players, weapons, grid };
