@@ -425,9 +425,10 @@ class Grid {
                 // progressBar.textContent = '0';
                 currentPlayerFront.classList.remove('inTurn'); // supprimer la surbrillance après qu'un joueur ait gagné
                 setTimeout(function () {
-                    alert(`${currentPlayer.name} a gagné le combat !`);
+                    if (window.confirm(`${currentPlayer.name} a gagné le combat ! /n Voulez-vous recommencer ?`)) {
+                        location.reload();
+                    }
                 }, 1000);
-                // restartGame.style.display = 'block';
             }
             this.count = localStorage.count;
             currentPlayerFront.classList.remove('inTurn');
