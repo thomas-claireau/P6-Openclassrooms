@@ -363,6 +363,22 @@ body {
 .container-game .actions img {
   width: 50px;
 }
+.container-game .health {
+  margin-top: 20px;
+}
+.container-game .health progress {
+  -webkit-appearance: none;
+}
+.container-game .health progress::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+.container-game .health progress::-webkit-progress-value {
+  background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)), -webkit-linear-gradient(right, #09c, #f44);
+  border-radius: 10px;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
+}
 .container-game .game {
   margin: 0 30px;
   box-shadow: 0 0 50px 0 rgba(27, 58, 106, 0.1);
