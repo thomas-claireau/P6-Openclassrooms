@@ -72,7 +72,7 @@ class Game {
 	 * Controlleur pour créer les armes de la grille de jeu
 	 */
 	setWeapons() {
-		for (let key in this.setup.weapons) {
+		for (const key in this.setup.weapons) {
 			const weapon = this.setup.weapons[key];
 			const name = weapon.name;
 			const damage = weapon.damage;
@@ -92,7 +92,7 @@ class Game {
 	 * Controlleur pour créer les joueurs de la grille de jeu
 	 */
 	setPlayers() {
-		for (let key in this.setup.players) {
+		for (const key in this.setup.players) {
 			const player = this.setup.players[key];
 			const name = player.name;
 			const health = player.health;

@@ -1,0 +1,30 @@
+{
+  "name": "p6-openclassrooms",
+  "version": "0.1.0",
+  "description": "Package projet 6 OpenClassrooms",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomas-claireau/P6-Openclassrooms.git"
+  },
+  "author": "Thomas Claireau <thomas.claireau@gmail.com> (https://thomas-claireau.fr)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thomas-claireau/P6-Openclassrooms/issues"
+  },
+  "homepage": "https://github.com/thomas-claireau/P6-Openclassrooms#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.0"
+  },
+  "dependencies": {
+    "animejs": "^3.1.0"
+  }
+}

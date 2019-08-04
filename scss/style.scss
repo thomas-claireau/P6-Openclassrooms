@@ -12,6 +12,7 @@ body {
 }
 
 .inTurn {
+	transition: all 0.1s ease-in-out;
 	border: 5px solid rgba(204, 22, 22, 0.575);
 }
 
@@ -233,29 +234,23 @@ body {
 
 	.health {
 		margin-top: 20px;
+		background-color: #e0e0e0;
+		border-radius: 10px;
+		width: 100%;
+		height: 20px;
+		transition: all 0.3s ease-in-out;
 
-		progress {
-			-webkit-appearance: none;
-		}
-		progress::-webkit-progress-bar {
-			background-color: #eee;
+		div {
+			background-color: rgba(0, 128, 0, 0.288);
 			border-radius: 10px;
-			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
-		}
-
-		progress::-webkit-progress-value {
-			background-image: -webkit-linear-gradient(
-					-45deg,
-					transparent 33%,
-					rgba(0, 0, 0, 0.1) 33%,
-					rgba(0, 0, 0, 0.1) 66%,
-					transparent 66%
-				),
-				-webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)),
-				-webkit-linear-gradient(right, #09c, #f44);
-
-			border-radius: 10px;
-			background-size: 35px 20px, 100% 100%, 100% 100%;
+			width: 100%;
+			height: 20px;
+			color: white;
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			align-items: center;
+			transition: all 0.3s ease-in-out;
 		}
 	}
 

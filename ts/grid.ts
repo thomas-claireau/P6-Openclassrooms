@@ -120,7 +120,6 @@ class Grid {
 	 */
 	createFrontGrid() {
 		const table: HTMLElement = document.querySelector('table');
-		console.log(table);
 		table.innerHTML = ''; // vider la table a chaque rechargement
 		const player1 = this.player1;
 		const player2 = this.player2;
@@ -456,10 +455,10 @@ class Grid {
 		}
 
 		const currentPlayerFront = document.querySelector(`.player${currentPlayerSlug}`);
-		const nextPlayerFront = document.querySelector(`.player${currentPlayerSlug}`);
+		const nextPlayerFront = document.querySelector(`.player${nextPlayerSlug}`);
 		const btnAtt = currentPlayerFront.querySelector('.actions .attaque');
 		const btnDef = currentPlayerFront.querySelector('.actions .defence');
-		const progressBar: HTMLElement = nextPlayerFront.querySelector('.health progress');
+		const progressBar: HTMLElement = nextPlayerFront.querySelector('.health div');
 
 		currentPlayerFront.classList.add('inTurn'); // mettre en surbrillance le menu du joueur qui joue
 
@@ -478,16 +477,9 @@ class Grid {
 				nextPlayer.health = nextPlayer.health - currentPlayer.weapon.damage / 2;
 			}
 
-			const animateProgress = anime({
-				targets: 'progress',
-				value: nextPlayer.health,
-				easing: 'linear',
-				autoplay: false,
-			});
-
 			// actualiser la barre de santé des joueurs
-			// progressBar.style.width = nextPlayer.health + '%';
-			// progressBar.textContent = nextPlayer.health;
+			progressBar.style.width = `${nextPlayer.health}%`;
+			progressBar.textContent = nextPlayer.health;
 
 			if (nextPlayer.health > 0) {
 				// si le joueur a plus de 0 en santé, la bataille continu (tour par tour)
@@ -506,14 +498,12 @@ class Grid {
 
 			this.count = localStorage.count;
 
-			currentPlayerFront.classList.remove('highLight');
+			currentPlayerFront.classList.remove('inTurn');
 			btnAtt.removeEventListener('click', attaque);
 			btnDef.removeEventListener('click', defense);
 		}
 
 		function defense() {
-			// ajout evenement click au bouton defense
-			// count++;
 			let count: any = Number(localStorage.count) + 1;
 			count = count.toString();
 			localStorage.setItem('count', count);
@@ -521,7 +511,7 @@ class Grid {
 			currentPlayer.defend = true;
 			thisObj.whosNext();
 			this.count = localStorage.count;
-			currentPlayerFront.classList.remove('highLight');
+			currentPlayerFront.classList.remove('inTurn');
 			btnAtt.removeEventListener('click', attaque);
 			btnDef.removeEventListener('click', defense);
 		}
