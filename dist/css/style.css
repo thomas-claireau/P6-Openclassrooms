@@ -404,10 +404,10 @@ body {
 .container-game .game table td.availableMoveCase:hover {
   background-color: rgba(0, 128, 0, 0.527);
 }
-.container-game .game table td#player1 {
+.container-game .game table td#playerOne {
   background-image: url("/assets/img/player_1.png");
 }
-.container-game .game table td#player2 {
+.container-game .game table td#playerTwo {
   background-image: url("/assets/img/player_2.png");
 }
 

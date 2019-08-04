@@ -108,10 +108,10 @@ class Grid {
                 // conditions pour afficher en HTML seulement
                 if (cell.accessible) {
                     if (cell.player === player1) {
-                        td.setAttribute('id', 'player1');
+                        td.setAttribute('id', 'playerOne');
                     }
                     else if (cell.player === player2) {
-                        td.setAttribute('id', 'player2');
+                        td.setAttribute('id', 'playerTwo');
                     }
                     this.weapons.forEach((weaponObj) => {
                         if (cell.weapon != null) {
@@ -376,28 +376,29 @@ class Grid {
      * Lance la bataille entre les deux joueurs
      */
     startBattle() {
-        let currentPlayerNumber;
-        let nextPlayerNumber;
+        let currentPlayerSlug;
+        let nextPlayerSlug;
         let currentPlayer;
         let nextPlayer;
         let thisObj = this;
         if (this.nowPlayer === this.player1) {
-            currentPlayerNumber = 1;
-            nextPlayerNumber = 2;
+            currentPlayerSlug = 'One';
+            nextPlayerSlug = 'Two';
             currentPlayer = this.player1;
             nextPlayer = this.player2;
         }
         else {
-            currentPlayerNumber = 2;
-            nextPlayerNumber = 1;
+            currentPlayerSlug = 'Two';
+            nextPlayerSlug = 'One';
             currentPlayer = this.player2;
             nextPlayer = this.player1;
         }
-        const htmlCurrentPlayer = document.querySelector('.showPlayer' + currentPlayerNumber);
-        const htmlAtt = document.querySelector('#player' + currentPlayerNumber + 'Att');
-        const htmlDef = document.querySelector('#player' + currentPlayerNumber + 'Def');
-        const progressBar = document.querySelector('#pb-player' + nextPlayerNumber);
-        htmlCurrentPlayer.classList.add('highLight'); // mettre en surbrillance les boutons lorsque c'est le tour d'un joueur
+        const currentPlayerFront = document.querySelector(`.player${currentPlayerSlug}`);
+        const nextPlayerFront = document.querySelector(`.player${currentPlayerSlug}`);
+        const btnAtt = currentPlayerFront.querySelector('.actions .attaque');
+        const btnDef = currentPlayerFront.querySelector('.actions .defence');
+        const progressBar = nextPlayerFront.querySelector('.health progress');
+        currentPlayerFront.classList.add('inTurn'); // mettre en surbrillance le menu du joueur qui joue
         function attaque() {
             // evenement click sur le bouton d'attaque
             let count = Number(localStorage.count) + 1;
@@ -412,27 +413,33 @@ class Grid {
                 // si l'autre joueur choisit la défense
                 nextPlayer.health = nextPlayer.health - currentPlayer.weapon.damage / 2;
             }
+            const animateProgress = anime({
+                targets: 'progress',
+                value: nextPlayer.health,
+                easing: 'linear',
+                autoplay: false,
+            });
             // actualiser la barre de santé des joueurs
-            progressBar.style.width = nextPlayer.health + '%';
-            progressBar.textContent = nextPlayer.health;
+            // progressBar.style.width = nextPlayer.health + '%';
+            // progressBar.textContent = nextPlayer.health;
             if (nextPlayer.health > 0) {
                 // si le joueur a plus de 0 en santé, la bataille continu (tour par tour)
                 thisObj.whosNext();
             }
             else {
                 // sinon, affiche le message du joueur qui gagne la partie
-                progressBar.style.width = '0%';
-                progressBar.textContent = '0';
-                htmlCurrentPlayer.classList.remove('highLight'); // supprimer la surbrillance après qu'un joueur ait gagné
+                // progressBar.style.width = '0%';
+                // progressBar.textContent = '0';
+                currentPlayerFront.classList.remove('inTurn'); // supprimer la surbrillance après qu'un joueur ait gagné
                 setTimeout(function () {
                     alert(`${currentPlayer.name} a gagné le combat !`);
                 }, 1000);
                 // restartGame.style.display = 'block';
             }
             this.count = localStorage.count;
-            htmlCurrentPlayer.classList.remove('highLight');
-            htmlAtt.removeEventListener('click', attaque);
-            htmlDef.removeEventListener('click', defense);
+            currentPlayerFront.classList.remove('highLight');
+            btnAtt.removeEventListener('click', attaque);
+            btnDef.removeEventListener('click', defense);
         }
         function defense() {
             // ajout evenement click au bouton defense
@@ -443,11 +450,11 @@ class Grid {
             currentPlayer.defend = true;
             thisObj.whosNext();
             this.count = localStorage.count;
-            htmlCurrentPlayer.classList.remove('highLight');
-            htmlAtt.removeEventListener('click', attaque);
-            htmlDef.removeEventListener('click', defense);
+            currentPlayerFront.classList.remove('highLight');
+            btnAtt.removeEventListener('click', attaque);
+            btnDef.removeEventListener('click', defense);
         }
-        htmlAtt.addEventListener('click', attaque);
-        htmlDef.addEventListener('click', defense);
+        btnAtt.addEventListener('click', attaque);
+        btnDef.addEventListener('click', defense);
     }
 }
