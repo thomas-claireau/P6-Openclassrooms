@@ -16,7 +16,6 @@ class Game {
 		this.weapons = new Array();
 		Game.heightGrid = this.setup.grid.height;
 		this.custom = custom;
-		console.log(this.custom);
 	}
 
 	/**
@@ -78,7 +77,10 @@ class Game {
 			const name = weapon.name;
 			const damage = weapon.damage;
 
-			const newWeapon = new Weapon(name, damage, this.newGrid);
+			const slug = weapon.name.toLowerCase().replace(' ', '_');
+			const symbole = `/assets/img/${slug}_symbole.png`;
+
+			const newWeapon = new Weapon(name, damage, this.newGrid, symbole);
 			newWeapon.createWeapon();
 			this.weapons.push(newWeapon);
 		}

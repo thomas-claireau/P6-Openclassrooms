@@ -75,6 +75,8 @@ class Grid {
         namePlayerTwo.textContent = player2.name;
         weaponPlayerOne.textContent = player1.weapon.name;
         weaponPlayerTwo.textContent = player2.weapon.name;
+        weaponImgPlayerOne.src = player1.weapon.symbole;
+        weaponImgPlayerTwo.src = player2.weapon.symbole;
         weaponDamagePlayerOne.textContent = player1.weapon.damage;
         weaponDamagePlayerTwo.textContent = player2.weapon.damage;
     }
@@ -83,6 +85,7 @@ class Grid {
      */
     createFrontGrid() {
         const table = document.querySelector('table');
+        console.log(table);
         table.innerHTML = ''; // vider la table a chaque rechargement
         const player1 = this.player1;
         const player2 = this.player2;
@@ -101,34 +104,23 @@ class Grid {
                 const axe = this.weapons[2];
                 const hammer = this.weapons[3];
                 const sword = this.weapons[4];
+                this.weapons.forEach((weapon) => { });
                 // conditions pour afficher en HTML seulement
                 if (cell.accessible) {
                     if (cell.player === player1) {
-                        td.classList.add('player1');
+                        td.setAttribute('id', 'player1');
                     }
                     else if (cell.player === player2) {
-                        td.classList.add('player2');
+                        td.setAttribute('id', 'player2');
                     }
-                    else if (cell.weapon === dagger) {
-                        td.classList.add('dagger');
-                        td.title = `dagger, dégats : ${dagger.damage}`;
-                    }
-                    else if (cell.weapon === axe) {
-                        td.classList.add('axe');
-                        td.title = `axe, dégats : ${axe.damage}`;
-                    }
-                    else if (cell.weapon === hammer) {
-                        td.classList.add('hammer');
-                        td.title = `hammer, dégats : ${hammer.damage}`;
-                    }
-                    else if (cell.weapon === sword) {
-                        td.classList.add('sword');
-                        td.title = `sword, dégats : ${sword.damage}`;
-                    }
-                    else if (cell.weapon === club) {
-                        td.classList.add('club');
-                        td.title = `club, dégats : ${club.damage}`;
-                    }
+                    this.weapons.forEach((weaponObj) => {
+                        if (cell.weapon != null) {
+                            if (cell.weapon.name === weaponObj.name) {
+                                td.classList.add('weapon');
+                                td.classList.add(weaponObj.name.toLowerCase().replace(' ', '_'));
+                            }
+                        }
+                    });
                     if (cell.availableMoveCase === true) {
                         td.classList.add('availableMoveCase');
                     }
@@ -320,8 +312,15 @@ class Grid {
         }
         // tant que la position du joueur n'est pas égale a la position du click, continuez a deplacer le joueur
         while (playerPositionRow != rowOfClick || playerPositionColumn != columnOfClick) {
-            const currentWeaponP1 = document.querySelector('#currentWeaponP1');
-            const currentWeaponP2 = document.querySelector('#currentWeaponP2');
+            // sélecteurs game
+            const playerOne = document.querySelector('.playerOne');
+            const weaponPlayerOne = playerOne.querySelector('.weapon .name p');
+            const weaponImgPlayerOne = playerOne.querySelector('.weapon .name img');
+            const weaponDamagePlayerOne = playerOne.querySelector('.weapon .damage p');
+            const playerTwo = document.querySelector('.playerTwo');
+            const weaponPlayerTwo = playerTwo.querySelector('.weapon .name p');
+            const weaponImgPlayerTwo = playerTwo.querySelector('.weapon .name img');
+            const weaponDamagePlayerTwo = playerTwo.querySelector('.weapon .damage p');
             playerPositionRow = playerPositionRow + directionRow;
             playerPositionColumn = playerPositionColumn + directionCol;
             // changer l'arme du joueur au passage sur une autre (+ remplacer l'ancienne case de la nouvelle arme par l'ancienne arme)
@@ -330,9 +329,15 @@ class Grid {
                 var temperaryDrop = playerPosition.weapon;
                 playerPosition.weapon = cell.weapon;
                 cell.weapon = temperaryDrop;
+                const cellFront = document.querySelector(`td[data-row='${playerPositionRow}'][data-column='${playerPositionColumn}']`);
+                cellFront.style.backgroundImage = '';
             }
-            currentWeaponP1.textContent = `Arme : ${this.player1.weapon.name} - Dégats : ${this.player1.weapon.damage}`;
-            currentWeaponP2.textContent = `Arme : ${this.player2.weapon.name} - Dégats : ${this.player2.weapon.damage}`;
+            weaponPlayerOne.textContent = this.player1.weapon.name;
+            weaponPlayerTwo.textContent = this.player2.weapon.name;
+            weaponImgPlayerOne.src = this.player1.weapon.symbole;
+            weaponImgPlayerTwo.src = this.player2.weapon.symbole;
+            weaponDamagePlayerOne.textContent = this.player1.weapon.damage;
+            weaponDamagePlayerTwo.textContent = this.player2.weapon.damage;
         }
     }
     /**

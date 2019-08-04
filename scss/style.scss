@@ -262,11 +262,11 @@ body {
 				background-repeat: no-repeat;
 				background-position: center;
 
-				&.player1 {
+				&#player1 {
 					background-image: url('/assets/img/player_1.png');
 				}
 
-				&.player2 {
+				&#player2 {
 					background-image: url('/assets/img/player_2.png');
 				}
 			}
@@ -274,22 +274,40 @@ body {
 	}
 }
 
-.pistolet {
-	background-image: url('/assets/img/pistolet.png');
+.weapon {
 	background-size: 100% 100%;
-}
 
-.mitraillette {
-	background-image: url('/assets/img/mitraillette.png');
-	background-size: 100% 100%;
-}
-.ak47 {
-	background-image: url('/assets/img/ak47.png');
-	background-size: 100% 100%;
-}
-.canon {
-	background-image: url('/assets/img/canon.png');
-	background-size: 100% 100%;
+	&.pistolet {
+		background-image: url('/assets/img/pistolet.png');
+	}
+
+	&.mitraillette {
+		background-image: url('/assets/img/mitraillette.png');
+	}
+
+	&.pistolet_mitrailleur {
+		background-image: url('/assets/img/pistolet_mitrailleur.png');
+	}
+
+	&.revolver {
+		background-image: url('/assets/img/revolver.png');
+	}
+
+	&.fusil {
+		background-image: url('/assets/img/fusil.png');
+	}
+
+	&.uzi {
+		background-image: url('/assets/img/uzi.png');
+	}
+
+	&.mitrailleuse {
+		background-image: url('/assets/img/mitrailleuse.png');
+	}
+
+	&.canon {
+		background-image: url('/assets/img/canon.png');
+	}
 }
 
 // .highLight {

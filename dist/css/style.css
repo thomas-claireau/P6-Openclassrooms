@@ -388,31 +388,39 @@ body {
 .container-game .game table td.availableMoveCase:hover {
   background-color: rgba(0, 128, 0, 0.527);
 }
-.container-game .game table td.player1 {
+.container-game .game table td#player1 {
   background-image: url("/assets/img/player_1.png");
 }
-.container-game .game table td.player2 {
+.container-game .game table td#player2 {
   background-image: url("/assets/img/player_2.png");
 }
 
-.pistolet {
+.weapon {
+  background-size: 100% 100%;
+}
+.weapon.pistolet {
   background-image: url("/assets/img/pistolet.png");
-  background-size: 100% 100%;
 }
-
-.mitraillette {
+.weapon.mitraillette {
   background-image: url("/assets/img/mitraillette.png");
-  background-size: 100% 100%;
 }
-
-.ak47 {
-  background-image: url("/assets/img/ak47.png");
-  background-size: 100% 100%;
+.weapon.pistolet_mitrailleur {
+  background-image: url("/assets/img/pistolet_mitrailleur.png");
 }
-
-.canon {
+.weapon.revolver {
+  background-image: url("/assets/img/revolver.png");
+}
+.weapon.fusil {
+  background-image: url("/assets/img/fusil.png");
+}
+.weapon.uzi {
+  background-image: url("/assets/img/uzi.png");
+}
+.weapon.mitrailleuse {
+  background-image: url("/assets/img/mitrailleuse.png");
+}
+.weapon.canon {
   background-image: url("/assets/img/canon.png");
-  background-size: 100% 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

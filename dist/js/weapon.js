@@ -1,17 +1,18 @@
 class Weapon {
-    constructor(name, damage, grid) {
+    constructor(name, damage, grid, symbole) {
         this.name = name;
         this.damage = damage;
         this.grid = grid;
+        this.symbole = symbole;
     }
     /**
      * Génère les armes sur la grille
      */
     createWeapon() {
-        let weaponRow = Game.getRandomInt();
-        let weaponColumn = Game.getRandomInt();
-        let grid = this.grid.grid;
-        let weaponCell = grid[weaponRow][weaponColumn];
+        const weaponRow = Game.getRandomInt();
+        const weaponColumn = Game.getRandomInt();
+        const grid = this.grid.grid;
+        const weaponCell = grid[weaponRow][weaponColumn];
         if (weaponCell.accessible === true &&
             weaponCell.weapon === null &&
             weaponCell.player === null) {

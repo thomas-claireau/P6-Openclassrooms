@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const prev = document.querySelector('.prev i');
 
 	let players;
-	let weapons;
 	let grid;
 	let setupGame;
 	let newGame;
@@ -33,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			},
 		};
 
-		weapons = {
+		const weapons = {
 			arme1: {
 				name: 'Pistolet',
 				damage: 10,
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				grid: null,
 			},
 			arme3: {
-				name: 'Ak47',
+				name: 'Fusil',
 				damage: 30,
 				grid: null,
 			},
@@ -115,51 +114,70 @@ document.addEventListener('DOMContentLoaded', () => {
 			};
 
 			let availableWeapons = {
-				arme1: {
-					name: 'Pistolet',
-					damage: 10,
-					grid: null,
-				},
-				arme2: {
-					name: 'Mitraillette',
-					damage: 20,
-					grid: null,
-				},
-				arme3: {
-					name: 'Pistolet mittrailleur',
-					damage: 24,
-					grid: null,
-				},
-				arme4: {
-					name: 'Revolver',
-					damage: 30,
-					grid: null,
-				},
-				arme5: {
-					name: 'Ak47',
-					damage: 34,
-					grid: null,
-				},
-				arme6: {
-					name: 'Uzi',
-					damage: 25,
-					grid: null,
-				},
-				arme7: {
-					name: 'Mitrailleuse',
-					damage: 40,
-					grid: null,
-				},
-				arme8: {
-					name: 'Canon',
-					damage: 45,
-					grid: null,
-				},
+				armes: [
+					{
+						name: 'Pistolet',
+						damage: 10,
+						grid: null,
+						img: null,
+						symbole: null,
+					},
+					{
+						name: 'Mitraillette',
+						damage: 20,
+						grid: null,
+						img: null,
+						symbole: null,
+					},
+					{
+						name: 'Pistolet mittrailleur',
+						damage: 24,
+						grid: null,
+						img: null,
+						symbole: null,
+					},
+					{
+						name: 'Revolver',
+						damage: 30,
+						grid: null,
+						img: null,
+						symbole: null,
+					},
+					{
+						name: 'Fusil',
+						damage: 34,
+						grid: null,
+						img: null,
+						symbole: null,
+					},
+					{
+						name: 'Uzi',
+						damage: 25,
+						grid: null,
+						img: null,
+						symbole: null,
+					},
+					{
+						name: 'Mitrailleuse',
+						damage: 40,
+						grid: null,
+						img: null,
+						symbole: null,
+					},
+					{
+						name: 'Canon',
+						damage: 45,
+						grid: null,
+						img: null,
+						symbole: null,
+					},
+				],
 			};
 
-			// si l'utilisateur choisit plus de 4 armes, les prochaines sont générées aléatoirement
-			if (Number(nbWeapons.value) > 4) {
-				for (let i = 0; i < Number(nbWeapons.value) + 4; i++) {}
+			const weapons = [];
+
+			for (let i = 0; i < Number(nbWeapons.value); i++) {
+				weapons.push(availableWeapons.armes[i]);
 			}
 
 			setupGame = { players, weapons, grid };
