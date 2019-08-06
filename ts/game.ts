@@ -1,5 +1,6 @@
 // caractéristiques de la partie
 class Game {
+	// tslint:disable-next-line:no-unsafe-any
 	public setup: { grid: any; weapons?: any; players?: any };
 	public grid: Grid;
 	public newGrid: Grid;

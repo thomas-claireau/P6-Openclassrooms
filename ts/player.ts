@@ -1,14 +1,17 @@
 class Player {
 	public name: string;
+	// tslint:disable-next-line:no-unsafe-any
 	public health: number | any;
 	public weapon: Weapon;
+	// tslint:disable-next-line:no-unsafe-any
 	public row: number | any;
+	// tslint:disable-next-line:no-unsafe-any
 	public column: number | any;
 	public defend: boolean;
 	public grid: Grid;
 	public playerNearby: boolean;
 
-	constructor(name: string, health: number | any, weapon: Weapon, grid: Grid) {
+	constructor(name: string, health: number, weapon: Weapon, grid: Grid) {
 		this.name = name;
 		this.health = health;
 		this.weapon = weapon;

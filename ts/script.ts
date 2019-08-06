@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const prev: HTMLElement = document.querySelector('.prev i');
 
 	let players: Object;
-	let grid: any;
+	let grid: Object;
+	// tslint:disable-next-line:no-unsafe-any
 	let setupGame: any;
 	let newGame: Game;
 
