@@ -3,7 +3,7 @@ class Game {
 	public setup: { grid: any; weapons?: any; players?: any };
 	public grid: Grid;
 	public newGrid: Grid;
-	public players: any[] | Player[];
+	public players: Player[];
 	public weapons: any[] | Weapon[];
 	public custom: boolean;
 	static heightGrid: number;
