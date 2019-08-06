@@ -1,9 +1,9 @@
 class Weapon {
-	public name;
-	public damage;
-	public grid;
-	public symbole;
-	constructor(name, damage, grid, symbole) {
+	public name: string;
+	public damage: any;
+	public grid: Grid;
+	public symbole: string;
+	constructor(name: string, damage: number, grid: Grid, symbole: string) {
 		this.name = name;
 		this.damage = damage;
 		this.grid = grid;

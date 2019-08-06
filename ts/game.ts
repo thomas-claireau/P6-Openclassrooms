@@ -1,14 +1,14 @@
 // caractéristiques de la partie
 class Game {
-	public setup;
-	public grid;
-	public newGrid;
-	public players;
-	public weapons;
-	public custom;
-	static heightGrid: any;
+	public setup: { grid: any; weapons?: any; players?: any };
+	public grid: Grid;
+	public newGrid: Grid;
+	public players: any[] | Player[];
+	public weapons: any[] | Weapon[];
+	public custom: boolean;
+	static heightGrid: number;
 
-	constructor(setup, custom = false) {
+	constructor(setup: { grid: Grid }, custom = false) {
 		this.setup = setup;
 		this.grid = setup.grid;
 		this.newGrid;
@@ -46,7 +46,7 @@ class Game {
 		this.setFrontGame();
 		this.setFrontGrid();
 
-		const count = localStorage.count;
+		const count: string = localStorage.count;
 		this.newGrid.count = count;
 		this.newGrid.whosNext();
 	}
@@ -73,12 +73,12 @@ class Game {
 	 */
 	setWeapons() {
 		for (const key in this.setup.weapons) {
-			const weapon = this.setup.weapons[key];
-			const name = weapon.name;
-			const damage = weapon.damage;
+			const weapon: Weapon = this.setup.weapons[key];
+			const name: string = weapon.name;
+			const damage: number = weapon.damage;
 
-			const slug = weapon.name.toLowerCase().replace(' ', '_');
-			const symbole = `/assets/img/${slug}_symbole.png`;
+			const slug: string = weapon.name.toLowerCase().replace(' ', '_');
+			const symbole: string = `/assets/img/${slug}_symbole.png`;
 
 			const newWeapon = new Weapon(name, damage, this.newGrid, symbole);
 			newWeapon.createWeapon();
@@ -93,12 +93,12 @@ class Game {
 	 */
 	setPlayers() {
 		for (const key in this.setup.players) {
-			const player = this.setup.players[key];
-			const name = player.name;
-			const health = player.health;
-			const weapon = this.weapons[0]; // club est l'arme par défaut
+			const player: Player = this.setup.players[key];
+			const name: string = player.name;
+			const health: number = player.health;
+			const weaponDefault: Weapon = this.weapons[0];
 
-			const newPlayer = new Player(name, health, weapon, this.newGrid);
+			const newPlayer = new Player(name, health, weaponDefault, this.newGrid);
 			newPlayer.createPlayer();
 			this.players.push(newPlayer);
 		}
@@ -122,10 +122,3 @@ class Game {
 		this.newGrid.createFrontGrid();
 	}
 }
-
-// TODO :
-// liste d'arme avec caractéristiques -> Objet JSON
-// taille de la grille
-// nombre de case inaccessibles
-// ajout méthode pour call tous les localstorages
-// ne pas laisser la possibilité du nom du joueur -> définir donc le nom + les autres caractéristique ici

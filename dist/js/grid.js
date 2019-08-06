@@ -1,5 +1,5 @@
 class Grid {
-    constructor(height = null, inacessible = null, player1 = null, player2 = null, gridActu = null, weapons = null, nowPlayer = null, count = null) {
+    constructor() {
         this.grid = [];
         this.height;
         this.inaccessible;
@@ -9,8 +9,8 @@ class Grid {
         this.weapons;
         this.nowPlayer;
         this.count;
-        this.row; // row of click
-        this.column; // column of click;
+        this.row;
+        this.column;
         this.custom;
     }
     /**
@@ -98,12 +98,6 @@ class Grid {
                 td.setAttribute('data-row', row.toString());
                 td.setAttribute('data-column', column.toString());
                 const cell = grid[row][column];
-                const club = this.weapons[0];
-                const dagger = this.weapons[1];
-                const axe = this.weapons[2];
-                const hammer = this.weapons[3];
-                const sword = this.weapons[4];
-                this.weapons.forEach((weapon) => { });
                 // conditions pour afficher en HTML seulement
                 if (cell.accessible) {
                     if (cell.player === player1) {
@@ -236,7 +230,6 @@ class Grid {
         let row = this.row;
         let column = this.column;
         let thisObj = this;
-        let count = this.count;
         tds.forEach((td) => {
             td.addEventListener('click', function (event) {
                 row = td.dataset.row;
@@ -352,7 +345,7 @@ class Grid {
      */
     whosNext() {
         let player;
-        this.count = localStorage.count;
+        this.count = Number(localStorage.count);
         if (this.count % 2 === 0) {
             player = this.player1;
             this.nowPlayer = player;

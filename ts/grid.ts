@@ -1,27 +1,18 @@
 class Grid {
-	public grid;
-	public height;
-	public inaccessible;
-	public player1;
-	public player2;
-	public gridActu;
-	public weapons;
-	public nowPlayer;
-	public count;
-	public row;
-	public column;
-	public custom;
+	public grid: Array<any>;
+	public height: number;
+	public inaccessible: number;
+	public player1: Player;
+	public player2: Player;
+	public gridActu: Grid;
+	public weapons: Array<Weapon>;
+	public nowPlayer: Player;
+	public count: string | number;
+	public row: string | number;
+	public column: string | number;
+	public custom: boolean;
 
-	constructor(
-		height = null,
-		inacessible = null,
-		player1 = null,
-		player2 = null,
-		gridActu = null,
-		weapons = null,
-		nowPlayer = null,
-		count = null
-	) {
+	constructor() {
 		this.grid = [];
 		this.height;
 		this.inaccessible;
@@ -31,8 +22,8 @@ class Grid {
 		this.weapons;
 		this.nowPlayer;
 		this.count;
-		this.row; // row of click
-		this.column; // column of click;
+		this.row;
+		this.column;
 		this.custom;
 	}
 
@@ -41,10 +32,10 @@ class Grid {
 	 */
 	createGrid() {
 		// création d'un tableau contenant un objet décrivant les différentes propriétés de chaque cellule
-		const grid = this.grid;
+		const grid: Array<Object> = this.grid;
 
 		for (let row = 0; row < this.height / 10; row++) {
-			const arrayRow = [];
+			const arrayRow: Array<Object> = [];
 
 			for (let column = 0; column < this.height / 10; column++) {
 				const cell = {
@@ -79,7 +70,7 @@ class Grid {
 	 * Informations sur les joueurs et les armes côté front
 	 */
 	setGame() {
-		let startGame;
+		let startGame: HTMLElement;
 
 		if (this.custom) {
 			startGame = document.querySelector('.play-custom');
@@ -90,17 +81,17 @@ class Grid {
 		const player2 = this.player2;
 
 		// sélecteurs game
-		const playerOne = document.querySelector('.playerOne');
-		const namePlayerOne = playerOne.querySelector('.name-player p');
-		const weaponPlayerOne = playerOne.querySelector('.weapon .name p');
+		const playerOne: HTMLElement = document.querySelector('.playerOne');
+		const namePlayerOne: HTMLElement = playerOne.querySelector('.name-player p');
+		const weaponPlayerOne: HTMLElement = playerOne.querySelector('.weapon .name p');
 		const weaponImgPlayerOne: HTMLImageElement = playerOne.querySelector('.weapon .name img');
-		const weaponDamagePlayerOne = playerOne.querySelector('.weapon .damage p');
+		const weaponDamagePlayerOne: HTMLElement = playerOne.querySelector('.weapon .damage p');
 
-		const playerTwo = document.querySelector('.playerTwo');
-		const namePlayerTwo = playerTwo.querySelector('.name-player p');
-		const weaponPlayerTwo = playerTwo.querySelector('.weapon .name p');
+		const playerTwo: HTMLElement = document.querySelector('.playerTwo');
+		const namePlayerTwo: HTMLElement = playerTwo.querySelector('.name-player p');
+		const weaponPlayerTwo: HTMLElement = playerTwo.querySelector('.weapon .name p');
 		const weaponImgPlayerTwo: HTMLImageElement = playerTwo.querySelector('.weapon .name img');
-		const weaponDamagePlayerTwo = playerTwo.querySelector('.weapon .damage p');
+		const weaponDamagePlayerTwo: HTMLElement = playerTwo.querySelector('.weapon .damage p');
 
 		namePlayerOne.textContent = player1.name;
 		namePlayerTwo.textContent = player2.name;
@@ -136,14 +127,6 @@ class Grid {
 				td.setAttribute('data-column', column.toString());
 				const cell = grid[row][column];
 
-				const club = this.weapons[0];
-				const dagger = this.weapons[1];
-				const axe = this.weapons[2];
-				const hammer = this.weapons[3];
-				const sword = this.weapons[4];
-
-				this.weapons.forEach((weapon) => {});
-
 				// conditions pour afficher en HTML seulement
 				if (cell.accessible) {
 					if (cell.player === player1) {
@@ -178,7 +161,7 @@ class Grid {
 	 */
 	checkavailableMoveCases() {
 		let i = 1;
-		const limit = 3;
+		const limit: number = 3;
 		const grid = this.grid;
 		const playerInfo = this.nowPlayer;
 		const playerInfoRow = Number(playerInfo.row);
@@ -280,7 +263,6 @@ class Grid {
 		let row = this.row;
 		let column = this.column;
 		let thisObj = this;
-		let count = this.count;
 
 		tds.forEach((td) => {
 			td.addEventListener('click', function(event) {
@@ -298,7 +280,7 @@ class Grid {
 					player.column = column; // nouvelle colonne du joueur
 
 					if (thisObj.checkClosePlayers() === false) {
-						let count: any = Number(localStorage.count) + 1;
+						let count: number | string = Number(localStorage.count) + 1;
 						count = count.toString();
 						localStorage.setItem('count', count);
 					}
@@ -360,19 +342,19 @@ class Grid {
 		// tant que la position du joueur n'est pas égale a la position du click, continuez a deplacer le joueur
 		while (playerPositionRow != rowOfClick || playerPositionColumn != columnOfClick) {
 			// sélecteurs game
-			const playerOne = document.querySelector('.playerOne');
-			const weaponPlayerOne = playerOne.querySelector('.weapon .name p');
+			const playerOne: HTMLElement = document.querySelector('.playerOne');
+			const weaponPlayerOne: HTMLElement = playerOne.querySelector('.weapon .name p');
 			const weaponImgPlayerOne: HTMLImageElement = playerOne.querySelector(
 				'.weapon .name img'
 			);
-			const weaponDamagePlayerOne = playerOne.querySelector('.weapon .damage p');
+			const weaponDamagePlayerOne: HTMLElement = playerOne.querySelector('.weapon .damage p');
 
-			const playerTwo = document.querySelector('.playerTwo');
-			const weaponPlayerTwo = playerTwo.querySelector('.weapon .name p');
+			const playerTwo: HTMLElement = document.querySelector('.playerTwo');
+			const weaponPlayerTwo: HTMLElement = playerTwo.querySelector('.weapon .name p');
 			const weaponImgPlayerTwo: HTMLImageElement = playerTwo.querySelector(
 				'.weapon .name img'
 			);
-			const weaponDamagePlayerTwo = playerTwo.querySelector('.weapon .damage p');
+			const weaponDamagePlayerTwo: HTMLElement = playerTwo.querySelector('.weapon .damage p');
 
 			playerPositionRow = playerPositionRow + directionRow;
 			playerPositionColumn = playerPositionColumn + directionCol;
@@ -413,8 +395,8 @@ class Grid {
 	 * Décide du tour de chaque joueur
 	 */
 	whosNext() {
-		let player;
-		this.count = localStorage.count;
+		let player: Player;
+		this.count = Number(localStorage.count);
 		if (this.count % 2 === 0) {
 			player = this.player1;
 			this.nowPlayer = player;
@@ -436,10 +418,10 @@ class Grid {
 	 * Lance la bataille entre les deux joueurs
 	 */
 	startBattle() {
-		let currentPlayerSlug;
-		let nextPlayerSlug;
-		let currentPlayer;
-		let nextPlayer;
+		let currentPlayerSlug: string;
+		let nextPlayerSlug: string;
+		let currentPlayer: Player;
+		let nextPlayer: Player;
 		let thisObj = this;
 
 		if (this.nowPlayer === this.player1) {
@@ -454,17 +436,19 @@ class Grid {
 			nextPlayer = this.player1;
 		}
 
-		const currentPlayerFront = document.querySelector(`.player${currentPlayerSlug}`);
-		const nextPlayerFront = document.querySelector(`.player${nextPlayerSlug}`);
-		const btnAtt = currentPlayerFront.querySelector('.actions .attaque');
-		const btnDef = currentPlayerFront.querySelector('.actions .defence');
+		const currentPlayerFront: HTMLElement = document.querySelector(
+			`.player${currentPlayerSlug}`
+		);
+		const nextPlayerFront: HTMLElement = document.querySelector(`.player${nextPlayerSlug}`);
+		const btnAtt: HTMLElement = currentPlayerFront.querySelector('.actions .attaque');
+		const btnDef: HTMLElement = currentPlayerFront.querySelector('.actions .defence');
 		const progressBar: HTMLElement = nextPlayerFront.querySelector('.health div');
 
 		currentPlayerFront.classList.add('inTurn'); // mettre en surbrillance le menu du joueur qui joue
 
 		function attaque() {
 			// evenement click sur le bouton d'attaque
-			let count: any = Number(localStorage.count) + 1;
+			let count: number | string = Number(localStorage.count) + 1;
 			count = count.toString();
 			localStorage.setItem('count', count);
 			currentPlayer.defend = false; // si le currentPlayer attaque, il ne défend pas
@@ -508,7 +492,7 @@ class Grid {
 		}
 
 		function defense() {
-			let count: any = Number(localStorage.count) + 1;
+			let count: number | string = Number(localStorage.count) + 1;
 			count = count.toString();
 			localStorage.setItem('count', count);
 

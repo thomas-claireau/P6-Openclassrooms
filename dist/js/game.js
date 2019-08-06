@@ -77,8 +77,8 @@ class Game {
             const player = this.setup.players[key];
             const name = player.name;
             const health = player.health;
-            const weapon = this.weapons[0]; // club est l'arme par défaut
-            const newPlayer = new Player(name, health, weapon, this.newGrid);
+            const weaponDefault = this.weapons[0];
+            const newPlayer = new Player(name, health, weaponDefault, this.newGrid);
             newPlayer.createPlayer();
             this.players.push(newPlayer);
         }
@@ -99,9 +99,3 @@ class Game {
         this.newGrid.createFrontGrid();
     }
 }
-// TODO :
-// liste d'arme avec caractéristiques -> Objet JSON
-// taille de la grille
-// nombre de case inaccessibles
-// ajout méthode pour call tous les localstorages
-// ne pas laisser la possibilité du nom du joueur -> définir donc le nom + les autres caractéristique ici

@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-	const btnPlay = document.querySelector('.play button');
-	const btnCustom = document.querySelector('.custom button');
-	const btnPlayCustom = document.querySelector('.play-custom');
-	const containerStart = document.querySelector('.choice');
-	const containerOption = document.querySelector('.container-custom');
-	const optionsGrid = containerOption.querySelectorAll('.select');
-	const containerGame = document.querySelector('.container-game');
-	const prev = document.querySelector('.prev i');
+	const btnPlay: HTMLElement = document.querySelector('.play button');
+	const btnCustom: HTMLElement = document.querySelector('.custom button');
+	const btnPlayCustom: HTMLElement = document.querySelector('.play-custom');
+	const containerStart: HTMLElement = document.querySelector('.choice');
+	const containerOption: HTMLElement = document.querySelector('.container-custom');
+	const optionsGrid: NodeListOf<HTMLElement> = containerOption.querySelectorAll('.select');
+	const containerGame: HTMLElement = document.querySelector('.container-game');
+	const prev: HTMLElement = document.querySelector('.prev i');
 
-	let players;
-	let grid;
-	let setupGame;
-	let newGame;
+	let players: any;
+	let grid: any;
+	let setupGame: any;
+	let newGame: Game;
 
 	btnPlay.addEventListener('click', function() {
 		containerStart.classList.add('hide');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			},
 		};
 
-		const weapons = {
+		const weapons: Object = {
 			arme1: {
 				name: 'Pistolet',
 				damage: 10,
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				inaccessibles: nbObstacle.value, // nombre de cases inaccessibles
 			};
 
-			let availableWeapons = {
+			let availableWeapons: any = {
 				armes: [
 					{
 						name: 'Pistolet',
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				],
 			};
 
-			const weapons = [];
+			const weapons: Array<Object> = [];
 
 			for (let i = 0; i < Number(nbWeapons.value); i++) {
 				weapons.push(availableWeapons.armes[i]);
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		optionsGrid.forEach((option) => {
 			const inputOption = option.querySelector('input');
-			const outputOption = option.querySelector('.output');
+			const outputOption: HTMLElement = option.querySelector('.output');
 
 			outputOption.innerHTML = inputOption.value;
 
