@@ -30,7 +30,7 @@ class Grid {
 	/**
 	 * Création de la grille
 	 */
-	createGrid() {
+	public createGrid() {
 		// création d'un tableau contenant un objet décrivant les différentes propriétés de chaque cellule
 		const grid: Array<Object> = this.grid;
 
@@ -53,7 +53,7 @@ class Grid {
 	/**
 	 * Création des cases inaccessibles sur la grille
 	 */
-	setInaccessibleCase() {
+	public setInaccessibleCase() {
 		const grid = this.grid;
 		for (let i = 0; i < this.inaccessible; i++) {
 			// création de case innacessible au hasard
@@ -69,7 +69,7 @@ class Grid {
 	/**
 	 * Informations sur les joueurs et les armes côté front
 	 */
-	setGame() {
+	public setGame() {
 		let startGame: HTMLElement;
 
 		if (this.custom) {
@@ -109,7 +109,7 @@ class Grid {
 	/**
 	 * Création de la grille à part de l'objet grid, côté front
 	 */
-	createFrontGrid() {
+	public createFrontGrid() {
 		const table: HTMLElement = document.querySelector('table');
 		table.innerHTML = ''; // vider la table a chaque rechargement
 		const player1 = this.player1;
@@ -159,7 +159,7 @@ class Grid {
 	/**
 	 * Vérifier les mouvements disponibles pour chaque joueur à chaque tour
 	 */
-	checkavailableMoveCases() {
+	public checkavailableMoveCases() {
 		let i = 1;
 		const limit: number = 3;
 		const grid = this.grid;
@@ -228,7 +228,7 @@ class Grid {
 	/**
 	 * Vérifie si les joueurs sont côte à côte
 	 */
-	checkClosePlayers() {
+	public checkClosePlayers() {
 		let startBattle = false;
 		const player = this.nowPlayer;
 		const playerRow = Number(player.row);
@@ -256,7 +256,7 @@ class Grid {
 	/**
 	 * Au click, upgrade les informations sur l'objet Grid, et lance les instructions pour faire bouger les joueurs, tour à tour.
 	 */
-	updateGridToClick() {
+	public updateGridToClick() {
 		const tds = document.querySelectorAll('td');
 		const grid = this.grid;
 		const player = this.nowPlayer;
@@ -308,7 +308,7 @@ class Grid {
 	/**
 	 * Fait bouger le joueur jusqu'à la position du click
 	 */
-	movePlayer() {
+	public movePlayer() {
 		// playerPosition est le joueur dans la fonction sendGridToFront. Il faut aussi ajouter la cellule (row + column) pour l'utiliser dans la fonction changeWeapon
 		let directionRow = 0;
 		let directionCol = 0;
@@ -385,7 +385,7 @@ class Grid {
 	/**
 	 * Méthode controlleur qui envoie les informations de Grid côté front.
 	 */
-	sendGridToFront() {
+	public sendGridToFront() {
 		this.grid = this.checkavailableMoveCases(); // appel de cette fonction ici car les lignes et les colonnes sont générés dans la fonction createFrontGrid qui est appelé juste après
 		this.createFrontGrid();
 		this.updateGridToClick();
@@ -394,7 +394,7 @@ class Grid {
 	/**
 	 * Décide du tour de chaque joueur
 	 */
-	whosNext() {
+	public whosNext() {
 		let player: Player;
 		this.count = Number(localStorage.count);
 		if (this.count % 2 === 0) {
@@ -417,7 +417,7 @@ class Grid {
 	/**
 	 * Lance la bataille entre les deux joueurs
 	 */
-	startBattle() {
+	public startBattle() {
 		let currentPlayerSlug: string;
 		let nextPlayerSlug: string;
 		let currentPlayer: Player;

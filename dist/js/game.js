@@ -11,9 +11,10 @@ class Game {
     }
     /**
      * Méthode statique permettant la création d'entier aléatoire
+     * @returns {number} Le nombre entier aléatoire
      */
     static getRandomInt() {
-        const limit = Game.heightGrid / 10;
+        let limit = Game.heightGrid / 10;
         return Math.floor(Math.random() * limit);
     }
     /**

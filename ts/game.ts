@@ -6,7 +6,7 @@ class Game {
 	public players: Player[];
 	public weapons: any[] | Weapon[];
 	public custom: boolean;
-	static heightGrid: number;
+	public static heightGrid: number;
 
 	constructor(setup: { grid: Grid }, custom = false) {
 		this.setup = setup;
@@ -20,16 +20,17 @@ class Game {
 
 	/**
 	 * Méthode statique permettant la création d'entier aléatoire
+	 * @returns {number} Le nombre entier aléatoire
 	 */
-	static getRandomInt() {
-		const limit = Game.heightGrid / 10;
+	public static getRandomInt() {
+		let limit = Game.heightGrid / 10;
 		return Math.floor(Math.random() * limit);
 	}
 
 	/**
 	 * Création / Reset des localStorage utilisées dans l'application
 	 */
-	setLocalStorage() {
+	public setLocalStorage() {
 		localStorage.setItem('count', '0');
 		localStorage.setItem('rowOfClick', null);
 		localStorage.setItem('columnOfClick', null);
@@ -38,7 +39,7 @@ class Game {
 	/**
 	 * Controlleur pour lancer la partie
 	 */
-	loadGame() {
+	public loadGame() {
 		this.setGrid();
 		this.setInaccessiblesCases();
 		this.setWeapons();
@@ -54,7 +55,7 @@ class Game {
 	/**
 	 * Controlleur pour initialiser l'objet Grid et créer la grille de jeu
 	 */
-	setGrid() {
+	public setGrid() {
 		this.newGrid = new Grid();
 		this.newGrid.height = this.setup.grid.height;
 		this.newGrid.createGrid();
@@ -63,7 +64,7 @@ class Game {
 	/**
 	 * Controlleur pour créer les cases inaccessibles de la grille de jeu
 	 */
-	setInaccessiblesCases() {
+	public setInaccessiblesCases() {
 		this.newGrid.inaccessible = this.setup.grid.inaccessibles;
 		this.newGrid.setInaccessibleCase();
 	}
@@ -71,7 +72,7 @@ class Game {
 	/**
 	 * Controlleur pour créer les armes de la grille de jeu
 	 */
-	setWeapons() {
+	public setWeapons() {
 		for (const key in this.setup.weapons) {
 			const weapon: Weapon = this.setup.weapons[key];
 			const name: string = weapon.name;
@@ -91,7 +92,7 @@ class Game {
 	/**
 	 * Controlleur pour créer les joueurs de la grille de jeu
 	 */
-	setPlayers() {
+	public setPlayers() {
 		for (const key in this.setup.players) {
 			const player: Player = this.setup.players[key];
 			const name: string = player.name;
@@ -110,7 +111,7 @@ class Game {
 	/**
 	 * Controlleur pour lancer la méthode sur les armes et les joueurs côté front
 	 */
-	setFrontGame() {
+	public setFrontGame() {
 		this.newGrid.custom = this.custom;
 		this.newGrid.setGame();
 	}
@@ -118,7 +119,7 @@ class Game {
 	/**
 	 * Controlleur pour lancer la méthode de création de l'objet grid, côté front
 	 */
-	setFrontGrid() {
+	public setFrontGrid() {
 		this.newGrid.createFrontGrid();
 	}
 }

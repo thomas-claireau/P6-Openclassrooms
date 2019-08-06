@@ -22,7 +22,7 @@ class Player {
 	/**
 	 * Vérifie si les joueurs sont côte à côte
 	 */
-	checkClosePlayers() {
+	public checkClosePlayers() {
 		// vérifie si les joueurs ne sont pas cote a cote
 		let topBottom = this.row;
 		let leftRight = this.column;
@@ -73,7 +73,7 @@ class Player {
 	/**
 	 * Création des joueurs et mise à jour de l'objet Grid
 	 */
-	createPlayer(): any {
+	public createPlayer(): any {
 		// fonction pour créer les joueurs
 		let playerRow = this.row;
 		let playerColumn = this.column;

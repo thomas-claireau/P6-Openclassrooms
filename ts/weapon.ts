@@ -13,7 +13,7 @@ class Weapon {
 	/**
 	 * Génère les armes sur la grille
 	 */
-	createWeapon() {
+	public createWeapon() {
 		const weaponRow = Game.getRandomInt();
 		const weaponColumn = Game.getRandomInt();
 		const grid = this.grid.grid;
