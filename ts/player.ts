@@ -1,14 +1,14 @@
 class Player {
 	public name: string;
-	public health: any;
+	public health: number | any;
 	public weapon: Weapon;
-	public row: any;
-	public column: any;
+	public row: number | any;
+	public column: number | any;
 	public defend: boolean;
 	public grid: Grid;
 	public playerNearby: boolean;
 
-	constructor(name: string, health: any, weapon: Weapon, grid: Grid) {
+	constructor(name: string, health: number | any, weapon: Weapon, grid: Grid) {
 		this.name = name;
 		this.health = health;
 		this.weapon = weapon;
@@ -24,12 +24,12 @@ class Player {
 	 */
 	public checkClosePlayers() {
 		// vérifie si les joueurs ne sont pas cote a cote
-		let topBottom = this.row;
-		let leftRight = this.column;
-		let checkUp: any;
-		let checkDown: any;
-		let checkLeft: any;
-		let checkRight: any;
+		const topBottom = this.row;
+		const leftRight = this.column;
+		let checkUp: undefined | Object;
+		let checkDown: undefined | Object;
+		let checkLeft: undefined | Object;
+		let checkRight: undefined | Object;
 		let grid = this.grid.grid;
 
 		if (this.name === 'Joueur 2') {

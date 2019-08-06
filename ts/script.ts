@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const containerGame: HTMLElement = document.querySelector('.container-game');
 	const prev: HTMLElement = document.querySelector('.prev i');
 
-	let players: any;
+	let players: Object;
 	let grid: any;
 	let setupGame: any;
 	let newGame: Game;

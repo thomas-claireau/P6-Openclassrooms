@@ -14,8 +14,8 @@ class Player {
      */
     checkClosePlayers() {
         // vérifie si les joueurs ne sont pas cote a cote
-        let topBottom = this.row;
-        let leftRight = this.column;
+        const topBottom = this.row;
+        const leftRight = this.column;
         let checkUp;
         let checkDown;
         let checkLeft;
