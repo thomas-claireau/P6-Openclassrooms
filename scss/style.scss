@@ -1,6 +1,11 @@
 @import 'button.scss';
 @import 'slider-range.scss';
 
+$break-large: 1210px;
+$break-medium: 1024px;
+$break-tablet: 780px;
+$break-small: 450px;
+
 body {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
 		'Open Sans', 'Helvetica Neue', sans-serif;
@@ -295,6 +300,50 @@ body {
 			}
 		}
 	}
+
+	@media screen and (max-width: $break-medium) {
+		flex-direction: column;
+
+		.playerOne,
+		.playerTwo {
+			width: 100%;
+			flex-direction: row;
+			// height: 10px;
+
+			.avatar {
+				img {
+					width: 30px;
+				}
+			}
+
+			.name-player {
+				display: none;
+			}
+
+			.weapon {
+				display: flex;
+
+				img {
+					width: 30px;
+				}
+			}
+
+			.actions {
+				.attaque,
+				.defence {
+					width: 40px;
+					height: 40px;
+				}
+				img {
+					width: 20px;
+				}
+			}
+
+			.health {
+				display: block;
+			}
+		}
+	}
 }
 
 .weapon {
@@ -332,69 +381,3 @@ body {
 		background-image: url('/assets/img/canon.png');
 	}
 }
-
-// .highLight {
-// 	background-color: rgb(196, 82, 82);
-// 	opacity: 0.8;
-// 	border-radius: 10%;
-// }
-// .btn {
-// 	/* align-items: center; */
-// 	margin-top: 20px;
-// 	margin-bottom: 20px;
-// 	margin-left: 30px;
-// }
-// // img {
-// // 	margin-left: 70px;
-// // }
-// #showNamePlayer1 {
-// 	/* font-style: oblique; */
-// 	font-weight: bold;
-// 	margin-left: 80px;
-// 	text-shadow: 1px 1px rgb(209, 217, 224);
-// 	color: #2a2e36;
-// }
-// #showNamePlayer2 {
-// 	/* font-style: oblique; */
-// 	font-weight: bold;
-// 	margin-left: 80px;
-// 	text-shadow: 1px 1px rgb(209, 217, 224);
-// 	color: #2a2e36;
-// }
-// #currentWeaponP1,
-// #currentWeaponP2 {
-// 	margin-left: 40px;
-// 	font-weight: bold;
-// 	font-size: 12px;
-// 	font-style: oblique;
-// 	color: #2a2e36;
-// }
-// .progress-bar {
-// 	padding: 6px 0px; /* 6px up and down, 0px left and right
-// 	/* margin-top: 5px; */
-// 	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
-// 	/* height: 18px; */
-// 	background-color: #f49542 !important;
-// 	border-radius: 4px;
-// 	border: 1px solid slategray;
-// 	transition: 0.4s linear;
-// 	transition-property: width, background-color;
-// 	width: 100%;
-// }
-
-// footer {
-// 	background-color: #2a2e36;
-// 	color: #c6d4df;
-// 	padding: 20px;
-// 	text-align: center;
-// 	margin-bottom: 0px;
-// 	font-family: 'Motiva Sans', Sans-serif;
-// }
-// #restartGame {
-// 	margin-left: 200px;
-// 	margin-bottom: 20px;
-// 	background-color: #f49542;
-// 	border-radius: 4px;
-// 	border: 1px solid slategray;
-// 	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
-// }

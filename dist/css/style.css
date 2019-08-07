@@ -417,6 +417,47 @@ body {
 .container-game .game table td#playerTwo {
   background-image: url("/assets/img/player_2.png");
 }
+@media screen and (max-width: 1024px) {
+  .container-game {
+    flex-direction: column;
+  }
+  .container-game .playerOne,
+.container-game .playerTwo {
+    width: 100%;
+    flex-direction: row;
+  }
+  .container-game .playerOne .avatar img,
+.container-game .playerTwo .avatar img {
+    width: 30px;
+  }
+  .container-game .playerOne .name-player,
+.container-game .playerTwo .name-player {
+    display: none;
+  }
+  .container-game .playerOne .weapon,
+.container-game .playerTwo .weapon {
+    display: flex;
+  }
+  .container-game .playerOne .weapon img,
+.container-game .playerTwo .weapon img {
+    width: 30px;
+  }
+  .container-game .playerOne .actions .attaque,
+.container-game .playerOne .actions .defence,
+.container-game .playerTwo .actions .attaque,
+.container-game .playerTwo .actions .defence {
+    width: 40px;
+    height: 40px;
+  }
+  .container-game .playerOne .actions img,
+.container-game .playerTwo .actions img {
+    width: 20px;
+  }
+  .container-game .playerOne .health,
+.container-game .playerTwo .health {
+    display: block;
+  }
+}
 
 .weapon {
   background-size: 100% 100%;
