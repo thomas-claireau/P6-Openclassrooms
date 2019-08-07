@@ -19,9 +19,9 @@ class Grid {
     createGrid() {
         // création d'un tableau contenant un objet décrivant les différentes propriétés de chaque cellule
         const grid = this.grid;
-        for (let row = 0; row < this.height / 10; row++) {
+        for (let row = 0; row < this.height / 10; row += 1) {
             const arrayRow = [];
-            for (let column = 0; column < this.height / 10; column++) {
+            for (let column = 0; column < this.height / 10; column += 1) {
                 const cell = {
                     accessible: true,
                     player: null,
@@ -38,7 +38,7 @@ class Grid {
      */
     setInaccessibleCase() {
         const grid = this.grid;
-        for (let i = 0; i < this.inaccessible; i++) {
+        for (let i = 0; i < this.inaccessible; i += 1) {
             // création de case innacessible au hasard
             const rowInaccessible = Game.getRandomInt();
             const columnInaccessible = Game.getRandomInt();
@@ -89,10 +89,10 @@ class Grid {
         const player1 = this.player1;
         const player2 = this.player2;
         const grid = this.grid;
-        for (let row = 0; row < grid.length; row++) {
+        for (let row = 0; row < grid.length; row += 1) {
             const tr = document.createElement('tr');
             table.append(tr); // création des lignes en premier (comme pour grid)
-            for (let column = 0; column < grid[row].length; column++) {
+            for (let column = 0; column < grid[row].length; column += 1) {
                 const td = document.createElement('td');
                 tr.append(td); // puis création des colonnes
                 td.setAttribute('data-row', row.toString());
@@ -143,7 +143,7 @@ class Grid {
                 grid[playerInfoRow + i][playerInfoColumn].player === null) {
                 // vérifier à gauche
                 grid[playerInfoRow + i][playerInfoColumn].availableMoveCase = true;
-                i++;
+                i += 1;
             }
             else {
                 break;
@@ -156,7 +156,7 @@ class Grid {
                 grid[playerInfoRow - i][playerInfoColumn].player === null) {
                 // vérifier à droite
                 grid[playerInfoRow - i][playerInfoColumn].availableMoveCase = true;
-                i++;
+                i += 1;
             }
             else {
                 break;
@@ -169,7 +169,7 @@ class Grid {
                 grid[playerInfoRow][playerInfoColumn + i].player === null) {
                 // vérifier en bas
                 grid[playerInfoRow][playerInfoColumn + i].availableMoveCase = true;
-                i++;
+                i += 1;
             }
             else {
                 break;
@@ -182,7 +182,7 @@ class Grid {
                 grid[playerInfoRow][playerInfoColumn - i].player === null) {
                 // vérifier en haut
                 grid[playerInfoRow][playerInfoColumn - i].availableMoveCase = true;
-                i++;
+                i += 1;
             }
             else {
                 break;
@@ -249,15 +249,15 @@ class Grid {
                         localStorage.setItem('count', count);
                     }
                     // reset tous les blocks après le click pour supprimer les mouvements disponibles des joueurs, sinon les mouvements dispo des deux joueurs s'afficheront en meme temps.
-                    for (let row = 0; row < grid.length; row++) {
-                        for (let column = 0; column < grid[row].length; column++) {
-                            let cell = grid[row][column];
-                            cell.availableMoveCase = false;
+                    for (let i = 0; i < grid.length; i += 1) {
+                        for (let j = 0; j < grid[i].length; j += 1) {
+                            const target = grid[i][j];
+                            target.availableMoveCase = false;
                         }
                     }
                 }
                 else {
-                    alert('Cette case est inacessible');
+                    alert('Cette case est inacessible'); // eslint-disable-line no-alert
                 }
                 thisObj.whosNext(); // au tour du joueur suivant
             });
@@ -303,7 +303,7 @@ class Grid {
             }
         }
         // tant que la position du joueur n'est pas égale a la position du click, continuez a deplacer le joueur
-        while (playerPositionRow != rowOfClick || playerPositionColumn != columnOfClick) {
+        while (playerPositionRow !== rowOfClick || playerPositionColumn !== columnOfClick) {
             // sélecteurs game
             const playerOne = document.querySelector('.playerOne');
             const weaponPlayerOne = playerOne.querySelector('.weapon .name p');
@@ -313,12 +313,12 @@ class Grid {
             const weaponPlayerTwo = playerTwo.querySelector('.weapon .name p');
             const weaponImgPlayerTwo = playerTwo.querySelector('.weapon .name img');
             const weaponDamagePlayerTwo = playerTwo.querySelector('.weapon .damage p');
-            playerPositionRow = playerPositionRow + directionRow;
-            playerPositionColumn = playerPositionColumn + directionCol;
+            playerPositionRow += directionRow;
+            playerPositionColumn += directionCol;
             // changer l'arme du joueur au passage sur une autre (+ remplacer l'ancienne case de la nouvelle arme par l'ancienne arme)
             const cell = grid[playerPositionRow][playerPositionColumn];
             if (cell.weapon != null) {
-                var temperaryDrop = playerPosition.weapon;
+                const temperaryDrop = playerPosition.weapon;
                 playerPosition.weapon = cell.weapon;
                 cell.weapon = temperaryDrop;
                 const cellFront = document.querySelector(`td[data-row='${playerPositionRow}'][data-column='${playerPositionColumn}']`);
@@ -372,7 +372,7 @@ class Grid {
         let nextPlayerSlug;
         let currentPlayer;
         let nextPlayer;
-        let thisObj = this;
+        const thisObj = this;
         if (this.nowPlayer === this.player1) {
             currentPlayerSlug = 'One';
             nextPlayerSlug = 'Two';
@@ -391,6 +391,7 @@ class Grid {
         const btnDef = currentPlayerFront.querySelector('.actions .defence');
         const progressBar = nextPlayerFront.querySelector('.health div');
         currentPlayerFront.classList.add('inTurn'); // mettre en surbrillance le menu du joueur qui joue
+
         function attaque() {
             // evenement click sur le bouton d'attaque
             let count = Number(localStorage.count) + 1;
@@ -399,11 +400,11 @@ class Grid {
             currentPlayer.defend = false; // si le currentPlayer attaque, il ne défend pas
             if (nextPlayer.defend === false || nextPlayer.defend === undefined) {
                 // si l'autre joueur choisit aussi l'attaque
-                nextPlayer.health = nextPlayer.health - currentPlayer.weapon.damage;
+                nextPlayer.health -= currentPlayer.weapon.damage;
             }
             else {
                 // si l'autre joueur choisit la défense
-                nextPlayer.health = nextPlayer.health - currentPlayer.weapon.damage / 2;
+                nextPlayer.health -= currentPlayer.weapon.damage / 2;
             }
             // actualiser la barre de santé des joueurs
             progressBar.style.width = `${nextPlayer.health}%`;
@@ -418,16 +419,18 @@ class Grid {
                 // progressBar.textContent = '0';
                 currentPlayerFront.classList.remove('inTurn'); // supprimer la surbrillance après qu'un joueur ait gagné
                 setTimeout(function () {
-                    if (window.confirm(`${currentPlayer.name} a gagné le combat ! /n Voulez-vous recommencer ?`)) {
-                        location.reload();
+                    if (window.confirm(`${currentPlayer.name} a gagné le combat ! /n Voulez-vous recommencer ?`)) { // eslint-disable-line no-alert
+                        window.location.reload();
                     }
                 }, 1000);
             }
             this.count = localStorage.count;
             currentPlayerFront.classList.remove('inTurn');
             btnAtt.removeEventListener('click', attaque);
+            // eslint-disable-next-line no-use-before-define
             btnDef.removeEventListener('click', defense);
         }
+        
         function defense() {
             let count = Number(localStorage.count) + 1;
             count = count.toString();
