@@ -189,9 +189,15 @@ body {
 				justify-content: center;
 				align-content: center;
 				align-items: center;
+				position: relative;
+				left: 15px;
 
 				img {
 					margin-right: 20px;
+
+					@media screen and (max-width: $break-medium) {
+						margin-right: 10px;
+					}
 				}
 			}
 		}
@@ -210,6 +216,10 @@ body {
 
 			&:hover {
 				background-color: #37589b;
+			}
+
+			@media screen and (max-width: $break-medium) {
+				margin-right: 15px;
 			}
 		}
 
@@ -235,6 +245,12 @@ body {
 		img {
 			width: 50px;
 		}
+
+		@media screen and (max-width: $break-medium) {
+			margin: 0;
+			position: relative;
+			left: 30px;
+		}
 	}
 
 	.health {
@@ -256,6 +272,12 @@ body {
 			align-content: center;
 			align-items: center;
 			transition: all 0.3s ease-in-out;
+		}
+
+		@media screen and (max-width: $break-medium) {
+			margin: 0 40px;
+			position: relative;
+			left: 30px;
 		}
 	}
 
@@ -308,7 +330,7 @@ body {
 		.playerTwo {
 			width: 100%;
 			flex-direction: row;
-			// height: 10px;
+			margin: 20px 0;
 
 			.avatar {
 				img {

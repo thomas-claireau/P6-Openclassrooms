@@ -323,12 +323,22 @@ body {
   justify-content: center;
   align-content: center;
   align-items: center;
+  position: relative;
+  left: 15px;
 }
 .container-game .playerOne .weapon .name img,
 .container-game .playerOne .weapon .damage img,
 .container-game .playerTwo .weapon .name img,
 .container-game .playerTwo .weapon .damage img {
   margin-right: 20px;
+}
+@media screen and (max-width: 1024px) {
+  .container-game .playerOne .weapon .name img,
+.container-game .playerOne .weapon .damage img,
+.container-game .playerTwo .weapon .name img,
+.container-game .playerTwo .weapon .damage img {
+    margin-right: 10px;
+  }
 }
 .container-game .actions {
   display: flex;
@@ -343,6 +353,11 @@ body {
 }
 .container-game .actions .attaque:hover {
   background-color: #37589b;
+}
+@media screen and (max-width: 1024px) {
+  .container-game .actions .attaque {
+    margin-right: 15px;
+  }
 }
 .container-game .actions .defence {
   background-color: #a6192c;
@@ -364,6 +379,13 @@ body {
 .container-game .actions img {
   width: 50px;
 }
+@media screen and (max-width: 1024px) {
+  .container-game .actions {
+    margin: 0;
+    position: relative;
+    left: 30px;
+  }
+}
 .container-game .health {
   margin-top: 20px;
   background-color: #e0e0e0;
@@ -383,6 +405,13 @@ body {
   align-content: center;
   align-items: center;
   transition: all 0.3s ease-in-out;
+}
+@media screen and (max-width: 1024px) {
+  .container-game .health {
+    margin: 0 40px;
+    position: relative;
+    left: 30px;
+  }
 }
 .container-game .game {
   margin: 0 30px;
@@ -425,6 +454,7 @@ body {
 .container-game .playerTwo {
     width: 100%;
     flex-direction: row;
+    margin: 20px 0;
   }
   .container-game .playerOne .avatar img,
 .container-game .playerTwo .avatar img {
