@@ -47,6 +47,13 @@ $color_1: #fff;
 		transform: translate(-50%, -50%);
 	}
 
+	&.choice {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
 	&.custom {
 		top: auto;
 		bottom: -50%;
