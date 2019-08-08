@@ -1,5 +1,7 @@
 # P6-Openclassrooms - Créez un jeu de plateau tour par tour en JS
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d5e2855738924b4490296eebdf8016f2)](https://app.codacy.com/app/thomas-claireau/P6-Openclassrooms?utm_source=github.com&utm_medium=referral&utm_content=thomas-claireau/P6-Openclassrooms&utm_campaign=Badge_Grade_Dashboard)
+
 Vous avez jusqu'ici développé des petites applications JavaScript. Il faut maintenant vous lancer dans la création d'un projet plus complet, plus solide... bref plus costaud. ;)
 
 Ce projet consistera à créer un jeu en ligne en JavaScript dans lequel 2 joueurs évoluent chacun leur tour pour s'affronter. Comme dans Highlander, il ne peut en rester qu'un !
