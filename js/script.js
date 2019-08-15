@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const containerStart = document.querySelector('.choice');
 	const containerOption = document.querySelector('.container-custom');
 	const optionsGrid = containerOption.querySelectorAll('.select');
-	const prev = document.querySelector('.prev i');
 
 	btnPlay.addEventListener('click', function() {
 		new Default().init();
@@ -14,9 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	btnCustom.addEventListener('click', function() {
 		containerStart.classList.add('hide');
 		containerOption.classList.remove('hide');
-		prev.addEventListener('click', function() {
-			containerOption.classList.add('hide');
-		});
 
 		btnPlayCustom.addEventListener('click', function() {
 			new Custom().init();

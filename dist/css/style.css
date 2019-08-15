@@ -205,16 +205,6 @@ body {
     top: 50%;
   }
 }
-.container-custom .prev {
-  position: absolute;
-  top: 50%;
-  left: -115px;
-  transform: translateY(-50%);
-}
-.container-custom .prev i {
-  font-size: 60px;
-  cursor: pointer;
-}
 .container-custom .option-game {
   display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

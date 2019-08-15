@@ -40,18 +40,6 @@ body {
 		top: 50%;
 	}
 
-	.prev {
-		position: absolute;
-		top: 50%;
-		left: -115px;
-		transform: translateY(-50%);
-
-		i {
-			font-size: 60px;
-			cursor: pointer;
-		}
-	}
-
 	.option-game {
 		display: inline-grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
