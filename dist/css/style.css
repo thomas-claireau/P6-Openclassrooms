@@ -447,10 +447,10 @@ body {
   background-color: rgba(0, 128, 0, 0.527);
 }
 .container-game .game table td#playerOne {
-  background-image: url("/assets/img/player_1.png");
+  background-image: url("../../assets/img/player_1.png");
 }
 .container-game .game table td#playerTwo {
-  background-image: url("/assets/img/player_2.png");
+  background-image: url("../../assets/img/player_2.png");
 }
 @media screen and (max-width: 1024px) {
   .container-game {
@@ -499,28 +499,28 @@ body {
   background-size: 100% 100%;
 }
 .weapon.pistolet {
-  background-image: url("/assets/img/pistolet.png");
+  background-image: url("../../assets/img/pistolet.png");
 }
 .weapon.mitraillette {
-  background-image: url("/assets/img/mitraillette.png");
+  background-image: url("../../assets/img/mitraillette.png");
 }
 .weapon.pistolet_mitrailleur {
-  background-image: url("/assets/img/pistolet_mitrailleur.png");
+  background-image: url("../../assets/img/pistolet_mitrailleur.png");
 }
 .weapon.revolver {
-  background-image: url("/assets/img/revolver.png");
+  background-image: url("../../assets/img/revolver.png");
 }
 .weapon.fusil {
-  background-image: url("/assets/img/fusil.png");
+  background-image: url("../../assets/img/fusil.png");
 }
 .weapon.uzi {
-  background-image: url("/assets/img/uzi.png");
+  background-image: url("../../assets/img/uzi.png");
 }
 .weapon.mitrailleuse {
-  background-image: url("/assets/img/mitrailleuse.png");
+  background-image: url("../../assets/img/mitrailleuse.png");
 }
 .weapon.canon {
-  background-image: url("/assets/img/canon.png");
+  background-image: url("../../assets/img/canon.png");
 }
 
 /*# sourceMappingURL=style.css.map */

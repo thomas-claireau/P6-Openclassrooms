@@ -63,7 +63,7 @@ class Game {
 			const name = weapon.name;
 			const damage = weapon.damage;
 			const slug = weapon.name.toLowerCase().replace(' ', '_');
-			const symbole = `/assets/img/${slug}_symbole.png`;
+			const symbole = `./assets/img/${slug}_symbole.png`;
 			const newWeapon = new Weapon(name, damage, this.newGrid, symbole);
 			newWeapon.createWeapon();
 			this.weapons.push(newWeapon);

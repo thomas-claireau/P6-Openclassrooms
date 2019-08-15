@@ -313,11 +313,11 @@ body {
 				background-position: center;
 
 				&#playerOne {
-					background-image: url('/assets/img/player_1.png');
+					background-image: url('../../assets/img/player_1.png');
 				}
 
 				&#playerTwo {
-					background-image: url('/assets/img/player_2.png');
+					background-image: url('../../assets/img/player_2.png');
 				}
 			}
 		}
@@ -372,34 +372,34 @@ body {
 	background-size: 100% 100%;
 
 	&.pistolet {
-		background-image: url('/assets/img/pistolet.png');
+		background-image: url('../../assets/img/pistolet.png');
 	}
 
 	&.mitraillette {
-		background-image: url('/assets/img/mitraillette.png');
+		background-image: url('../../assets/img/mitraillette.png');
 	}
 
 	&.pistolet_mitrailleur {
-		background-image: url('/assets/img/pistolet_mitrailleur.png');
+		background-image: url('../../assets/img/pistolet_mitrailleur.png');
 	}
 
 	&.revolver {
-		background-image: url('/assets/img/revolver.png');
+		background-image: url('../../assets/img/revolver.png');
 	}
 
 	&.fusil {
-		background-image: url('/assets/img/fusil.png');
+		background-image: url('../../assets/img/fusil.png');
 	}
 
 	&.uzi {
-		background-image: url('/assets/img/uzi.png');
+		background-image: url('../../assets/img/uzi.png');
 	}
 
 	&.mitrailleuse {
-		background-image: url('/assets/img/mitrailleuse.png');
+		background-image: url('../../assets/img/mitrailleuse.png');
 	}
 
 	&.canon {
-		background-image: url('/assets/img/canon.png');
+		background-image: url('../../assets/img/canon.png');
 	}
 }
