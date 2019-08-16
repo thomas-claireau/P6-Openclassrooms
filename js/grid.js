@@ -51,13 +51,6 @@ class Grid {
      * Informations sur les joueurs et les armes côté front
      */
     setGame() {
-        let startGame;
-        if (this.custom) {
-            startGame = document.querySelector('.play-custom');
-        }
-        else {
-            startGame = document.querySelector('.play');
-        }
         const player1 = this.player1;
         const player2 = this.player2;
         // sélecteurs game
@@ -130,7 +123,7 @@ class Grid {
     /**
      * Vérifier les mouvements disponibles pour chaque joueur à chaque tour
      */
-    checkavailableMoveCases() {
+    checkAvailableMoveCases() {
         let i = 1;
         const limit = 3;
         const grid = this.grid;
@@ -336,7 +329,7 @@ class Grid {
      * Méthode controlleur qui envoie les informations de Grid côté front.
      */
     sendGridToFront() {
-        this.grid = this.checkavailableMoveCases(); // appel de cette fonction ici car les lignes et les colonnes sont générés dans la fonction createFrontGrid qui est appelé juste après
+        this.grid = this.checkAvailableMoveCases(); // appel de cette fonction ici car les lignes et les colonnes sont générés dans la fonction createFrontGrid qui est appelé juste après
         this.createFrontGrid();
         this.updateGridToClick();
     }
