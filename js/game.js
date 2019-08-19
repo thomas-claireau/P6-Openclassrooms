@@ -80,6 +80,11 @@ class Game {
 			const health = player.health;
 			const weaponDefault = this.weapons[0];
 			const newPlayer = new Player(name, health, weaponDefault, this.newGrid);
+
+			if (key === 'player2') {
+				newPlayer.idPlayer = 2;
+			}
+
 			newPlayer.createPlayer();
 			this.players.push(newPlayer);
 		}

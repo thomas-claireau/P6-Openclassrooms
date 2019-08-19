@@ -8,6 +8,7 @@ class Player {
 		this.defend;
 		this.grid = grid;
 		this.playerNearby;
+		this.idPlayer = null;
 	}
 	/**
 	 * Vérifie si les joueurs sont côte à côte
@@ -21,7 +22,7 @@ class Player {
 		let checkLeft;
 		let checkRight;
 		const grid = this.grid.grid;
-		if (this.name === 'Joueur 2') {
+		if (this.idPlayer === 2) {
 			if (topBottom === 0) {
 				// si le joueur est sur la première ligne, ne pas vérifier la position du haut
 				checkUp = null;
@@ -52,6 +53,8 @@ class Player {
 				this.playerNearby = false;
 			}
 		}
+
+		return this.playerNearby;
 	}
 	/**
 	 * Création des joueurs et mise à jour de l'objet Grid
