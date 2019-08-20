@@ -285,7 +285,7 @@ class Grid {
             }
         }
         else if (columnOfClick === playerPositionColumn) {
-            // vérifier si le clic est au-dessus ou au-dessous du lecteur pour déterminer la direction du déplacement
+            // vérifier si le clic est au-dessus ou au-dessous du joueur pour déterminer la direction du déplacement
             if (rowOfClick < playerPositionRow) {
                 // la position du click est au dessus de la position du joueur
                 directionRow = -1;
@@ -306,6 +306,7 @@ class Grid {
             const weaponPlayerTwo = playerTwo.querySelector('.weapon .name p');
             const weaponImgPlayerTwo = playerTwo.querySelector('.weapon .name img');
             const weaponDamagePlayerTwo = playerTwo.querySelector('.weapon .damage p');
+
             playerPositionRow += directionRow;
             playerPositionColumn += directionCol;
             // changer l'arme du joueur au passage sur une autre (+ remplacer l'ancienne case de la nouvelle arme par l'ancienne arme)
