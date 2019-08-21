@@ -44,7 +44,6 @@ class Grid {
             const columnInaccessible = Game.getRandomInt();
             const inaccessibleCase = grid[rowInaccessible][columnInaccessible];
             inaccessibleCase.accessible = false; // chaque bloc innacessible a l'option accessible définit a false
-            inaccessibleCase.availableMoveCase = true;
         }
     }
     /**
