@@ -72,4 +72,46 @@ Fichiers à fournir :
 
 Code HTML/CSS/JS du projet
 
-### ⌛ Projet en cours...
+### ✔️ Projet validé
+
+Commentaires de l'évaluateur
+
+1. Évaluation globale du travail réalisé par l’étudiant (en spécifiant les critères non-validés si le projet est à retravailler) :
+
+L'objectif de cette échange avec Thomas était de valider que les points suivants sont acquis:
+
+ 
+
+Concevoir une architecture d'application JavaScript réutilisable
+Développer une application JavaScript orientée objet
+Mettre en oeuvre la bibliothèque jQuery dans une application web
+A l'évidence ces points sont parfaitement maîtrisés.
+
+ 
+
+2. Évaluation des livrables selon les critères du projet :
+
+Le code utilise les concepts de programmation orientée objet qui sont parfaitement compris
+Il est possible de définir certains paramètres clés de l'application sans avoir à refactoriser du code et d'ailleurs Thomas en a fait un bonus de son projet puisqu'il a ajouter une interface afin de personnaliser les éléments du jeu.
+Thomas est capable d'expliquer l'architecture mise en place
+Concernant les aspects sur jQuery, Thomas a décidé de ne pas l'utiliser dans le projet. Evidemment c'est un enjeu de l'évaluation mais :
+
+il a parfaitement su justifier son choix
+il a su me démontrer lors de nos échanges hors enregistrement qu'il maîtrise parfaitement l'usage de jQuery et qu'il aurait très bien pu l'utiliser dans ce projet.
+3. Évaluation de la présentation orale et sa conformité aux attentes :
+
+La présentation de Thomas était très bonne : claire, fluide et appuyée sur un powerpoint.
+Le temps imparti a bien été maîtrisé.
+Les réponses étaient pertinentes
+4. Évaluation des nouvelles compétences acquises par l'étudiant :
+
+La programmation orientée objet est parfaitement acquise.
+5. Points positifs (au moins 1) :
+
+Le gameplay est original, avec la possibilité d'attaquer juste après s'être déplacé
+Thomas sait apporter des arguments pour défendre ses idées
+Le code est propre
+6. Axes d'amélioration (au moins 1) :
+
+Essayer de respecter un peu plus l'énoncé, même si ça va à l'encontre de vos principes de développeur
+C'est donc un excellent travail proposé par Thomas qui valide bien évidement ce projet.
