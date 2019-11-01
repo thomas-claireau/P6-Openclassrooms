@@ -115,3 +115,8 @@ Le code est propre
 
 Essayer de respecter un peu plus l'énoncé, même si ça va à l'encontre de vos principes de développeur
 C'est donc un excellent travail proposé par Thomas qui valide bien évidement ce projet.
+
+
+### 🎬 Cliquez sur l'image ci-dessous pour voir la vidéo de soutenance 👇
+
+[![Regarder la vidéo de soutenance](https://img.youtube.com/vi/7127iclzTKo/maxresdefault.jpg)](https://youtu.be/7127iclzTKo)
